@@ -46,7 +46,7 @@
 	$('#bt_dottiScreen#uid#').on('click', function () {
 	id = #id#;
     $('#md_modal').dialog({title: "Dessiner"});
-    $('#md_modal').load('index.php?v=d&plugin=blea&modal=blea.dotti&id='+ id+'').dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.dotti&id='+ id+'').dialog('open');
 });
    $('.eqLogic[data-eqLogic_uid=#uid#] .cmd').on('click', function() {
      jeedom.cmd.execute({id: $(this).data('cmd_id')});

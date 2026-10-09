@@ -74,7 +74,7 @@ $('.bt_delImageMini').on('click', function () {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 							data: {
 								action: "delImage",
 								name: oriname
@@ -95,7 +95,7 @@ $('.bt_delImageMini').on('click', function () {
 								modifyWithoutSave=false;
 								$('#md_modal2').dialog('close');
 								$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-								$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.dotti.all').dialog('open');
+								$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.dotti.all').dialog('open');
 							}
 						});
 					}
@@ -108,7 +108,7 @@ $('.bt_delImageMini').on('click', function () {
 		var oriname = $(this).closest('.miniImageName').attr('data-name');
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 			data: {
 				action: "loadImage",
 				name: oriname
@@ -154,7 +154,7 @@ $('.bt_delImageMini').on('click', function () {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 							data: {
 								action: "renameImage",
 								oriname: oriname,
@@ -176,7 +176,7 @@ $('.bt_delImageMini').on('click', function () {
 								setTimeout(function() { deleteAlertMini() }, 2000);
 								$('#md_modal2').dialog('close');
 								$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-								$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.dotti.all').dialog('open');
+								$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.dotti.all').dialog('open');
 								modifyWithoutSave=false;
 							}
 						});

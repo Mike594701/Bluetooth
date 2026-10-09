@@ -1,5 +1,5 @@
 {
-    "plugins\/blea\/mobile\/html\/blea.html": {
+    "plugins\/bluetooth\/mobile\/html\/bluetooth.html": {
         "Arrêter Scan": "Stop Scan",
         "Lancer Scan": "Start Scan",
         "Santé": "Health",
@@ -10,7 +10,7 @@
         "Présent": "Present",
         "Dernière comm": "Last comm"
     },
-    "plugins\/blea\/plugin_info\/configuration.php": {
+    "plugins\/bluetooth\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Général": "Main",
         "Autoriser l'inclusion de devices inconnus": "Allow inclusion of unknown devices",
@@ -47,15 +47,15 @@
         "55008": "55008",
         "Réussie": "Successful",
         "Etes-vous sûr de vouloir mettre tous les équipements sur Local en : ": "Are you sure you want to put all the equipment on Local by:",
-        "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin Blea.": "Are you sure you want to download the latest module configurations? This will relaunch the Blea plugin",
+        "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin bluetooth.": "Are you sure you want to download the latest module configurations? This will relaunch the bluetooth plugin",
         "Téléchargement des configurations": "Download configurations"
     },
-    "plugins\/blea\/desktop\/modal\/blea.dotti.all.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.dotti.all.php": {
         "Annuler": "Cancel",
         "Continuer": "Continue",
         "Votre Collection": "Your Collection"
     },
-    "plugins\/blea\/desktop\/modal\/health.php": {
+    "plugins\/bluetooth\/desktop\/modal\/health.php": {
         "Image": "Picture",
         "Module": "Module",
         "ID": "Id",
@@ -77,7 +77,7 @@
         "Oui": "Yes",
         "Non": "No"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoompixoo.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoompixoo.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "The equipment id cannot be empty:",
         "Couleur": "Color",
         "Remplir": "Fill",
@@ -91,7 +91,7 @@
         "Annuler": "Cancel",
         "Continuer": "Continue"
     },
-    "plugins\/blea\/desktop\/modal\/blea.dotti.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.dotti.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "The equipment id cannot be empty:",
         "Couleur": "Color",
         "Remplir": "Fill",
@@ -106,7 +106,7 @@
         "Annuler": "Cancel",
         "Continuer": "Continue"
     },
-    "plugins\/blea\/desktop\/modal\/blea.miscale.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.miscale.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "EqLogic ID ne peut être vide": "EqLogic ID cannot be empty",
         "EqLogic non trouvé": "EqLogic not found",
@@ -119,7 +119,7 @@
         "Sex": "Sex",
         "Action": "Action"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoomtimeboxmini.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoomtimeboxmini.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "The equipment id cannot be empty:",
         "Couleur": "Color",
         "Remplir": "Fill",
@@ -133,18 +133,18 @@
         "Annuler": "Cancel",
         "Continuer": "Continue"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoomtimeboxmini.all.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoomtimeboxmini.all.php": {
         "Fichier(s) ajouté(s) avec succès": "File (s) successfully added",
         "Votre Collection": "Your Collection",
         "Annuler": "Cancel",
         "Continuer": "Continue"
     },
-    "plugins\/blea\/desktop\/modal\/syncconf.blea.php": {
+    "plugins\/bluetooth\/desktop\/modal\/syncconf.bluetooth.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Pause": "Pause",
         "Rechercher": "Search"
     },
-    "plugins\/blea\/desktop\/modal\/blea.miscale2.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.miscale2.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "EqLogic ID ne peut être vide": "EqLogic ID cannot be empty",
         "EqLogic non trouvé": "EqLogic not found",
@@ -157,7 +157,7 @@
         "Sex": "Sex",
         "Action": "Action"
     },
-    "plugins\/blea\/desktop\/modal\/blea.remote.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.remote.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Ajouter Antenne": "Add antenna",
         "Rafraichir": "Refresh",
@@ -201,20 +201,20 @@
         "Arrêt réussi": "Successful stop",
         "Etês-vous sûr de vouloir supprimer cette Antenne ?": "Are you sure you want to delete this antenna?"
     },
-    "plugins\/blea\/desktop\/modal\/blea.graph.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.graph.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Position Antennes": "Antennas position",
         "Représentation relative de la puissance des liens sur les antennes. Vous pouvez déplacer les antennes et sauver leur position pour les retrouver à la même place. Concernant les équipements, ceux-ci prennent une position d'équilibre (vous pouvez aussi les déplacer mais ils s'équilibreront). Si les antennes sont toutes d'un coté de l'équipement, il peut y avoir plusieurs positions d'équilibres de part et d'autres. Cependant dans le cas d'un équipement avec des antennes autour de lui (le plus en triangle possible), il y aura une seule position d'équilibre qui sera proche de la réelle. Certains modules comme les NIU émettent que lors de l'appui, donc au bout d'un moment il n'y a plus de signal, à ce moment là les modules sont rattachés virtuellement à l'antenne local via des pointillés": "Relative representation of the power of the links on the antennas. You can move the antennas and save their position to find them in the same place. Concerning the equipments, these take a position of equilibrium (you can also move them but they will balance). If the antennas are all on one side of the equipment, there may be several balance positions on either side. However, in the case of equipment with antennas around it (as triangular as possible), there will be only one equilibrium position which will be close to the real one. Some modules like the NIU emit that during the press, so after a moment there is no more signal, at that time the modules are virtually connected to the local antenna via dotted lines",
-        "Réseau BLEA": "BLEA network"
+        "Réseau bluetooth": "bluetooth network"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoompixoo.all.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoompixoo.all.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "The equipment id cannot be empty:",
         "Fichier(s) ajouté(s) avec succès": "File (s) successfully added",
         "Votre Collection": "Your Collection",
         "Annuler": "Cancel",
         "Continuer": "Continue"
     },
-    "plugins\/blea\/desktop\/php\/blea.php": {
+    "plugins\/bluetooth\/desktop\/php\/bluetooth.php": {
         "Vous êtes en mode scan. Recliquez sur le bouton scan pour sortir de ce mode (sinon le mode restera actif une minute)": "You are in scan mode. Click again on the scan button to exit this mode (otherwise the mode will remain active for one minute)",
         "Gestion": "Management",
         "Arrêter Scan": "Stop Scan",
@@ -223,9 +223,9 @@
         "Santé": "Health",
         "Réseau": "Network",
         "Antennes": "Antennas",
-        "Mes devices Blea Connus": "My Known Blea devices",
+        "Mes devices bluetooth Connus": "My Known bluetooth devices",
         "Rechercher": "Search",
-        "Mes devices Blea Inconnus": "My Unknown Blea devices",
+        "Mes devices bluetooth Inconnus": "My Unknown bluetooth devices",
         "Recréer les commandes": "Recreate commands",
         "Configuration avancée": "Advanced configuration",
         "Configuration spécifique": "Specific configuration",
@@ -263,15 +263,15 @@
         "Logical ID (info) ou Commande brute (action)": "Logical ID (info) or Raw command (action)",
         "Options": "Options"
     },
-    "plugins\/blea\/desktop\/js\/blea.js": {
-        "Inclusion BLEA": "BLEA inclusion",
+    "plugins\/bluetooth\/desktop\/js\/bluetooth.js": {
+        "Inclusion bluetooth": "bluetooth inclusion",
         "Quel type de produit voulez-vous inclure : ": "What type of product do you want to include:",
         "Tous": "All",
         "Choisissez le type de produit que vous souhaitez ajouter": "Choose the type of product you want to add",
         "Annuler": "Cancel",
         "Démarrer": "Start",
-        "Santé BLEA": "BLEA Health",
-        "Réseau BLEA": "BLEA network",
+        "Santé bluetooth": "bluetooth Health",
+        "Réseau bluetooth": "bluetooth network",
         "Configuration spécifique": "Specific configuration",
         "Gestion des antennes bluetooth": "Bluetooth antenna management",
         "Réglages avancées": "Advanced settings",
@@ -296,16 +296,16 @@
         "Lancer Scan": "Start Scan",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "A device has just been included \/ excluded. Please refresh the page"
     },
-    "plugins\/blea\/core\/php\/jeeBlea.php": {
+    "plugins\/bluetooth\/core\/php\/jeebluetooth.php": {
         "Aucun équipement trouvé pour : ": "No equipment found for:",
         "Rssi '. $datas['source']": "Rssi '. $ datas ['source']",
         "Present '. $datas['source']": "Present '. $ datas ['source']"
     },
-    "plugins\/blea\/core\/config\/devices\/miscale\/class\/miscale.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/miscale\/class\/miscale.class.php": {
         "Poids ' . $user['name']": "Weight '. $ user ['name']",
         "$value['name'] . ' ' . $user['name']": "$ value ['name']. '' $ user ['name']"
     },
-    "plugins\/blea\/core\/config\/devices\/divoomtimeboxmini\/ajax\/divoomtimeboxmini.ajax.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoomtimeboxmini\/ajax\/divoomtimeboxmini.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Répertoire de téléversement non trouvé : ": "Upload directory not found:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",
@@ -314,23 +314,23 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Unable to upload file (web server limit?)",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
-    "plugins\/blea\/core\/config\/devices\/divoomtimeboxmini\/class\/divoomtimeboxmini.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoomtimeboxmini\/class\/divoomtimeboxmini.class.php": {
         "Décompression du dossier distant": "Decompressing the remote folder",
         "Suppression du zip local": "Remove local zip",
         "Finie": "Over"
     },
-    "plugins\/blea\/core\/config\/devices\/dotti\/ajax\/dotti.ajax.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/dotti\/ajax\/dotti.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
-    "plugins\/blea\/core\/config\/devices\/dotti\/class\/dotti.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/dotti\/class\/dotti.class.php": {
         "Le champs message doit être un numérique : ": "The message field must be a numeric:"
     },
-    "plugins\/blea\/core\/config\/devices\/miscale2\/class\/miscale2.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/miscale2\/class\/miscale2.class.php": {
         "Poids ' . $user['name']": "Weight '. $ user ['name']",
         "$value['name'] . ' ' . $user['name']": "$ value ['name']. '' $ user ['name']"
     },
-    "plugins\/blea\/core\/config\/devices\/divoompixoo\/ajax\/divoompixoo.ajax.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoompixoo\/ajax\/divoompixoo.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Répertoire de téléversement non trouvé : ": "Upload directory not found:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",
@@ -339,17 +339,17 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Unable to upload file (web server limit?)",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
-    "plugins\/blea\/core\/config\/devices\/divoompixoo\/class\/divoompixoo.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoompixoo\/class\/divoompixoo.class.php": {
         "Décompression du dossier distant": "Decompressing the remote folder",
         "Suppression du zip local": "Remove local zip",
         "Finie": "Over"
     },
-    "plugins\/blea\/core\/ajax\/blea.ajax.php": {
-        "Blea eqLogic non trouvé : ": "Blea eqLogic not found:",
+    "plugins\/bluetooth\/core\/ajax\/bluetooth.ajax.php": {
+        "bluetooth eqLogic non trouvé : ": "bluetooth eqLogic not found:",
         "Remote inconnu : ": "Unknown remote:",
-        "Erreur, vérifiez la log Blea": "Error, check the Blea log"
+        "Erreur, vérifiez la log bluetooth": "Error, check the bluetooth log"
     },
-    "plugins\/blea\/core\/class\/blea.class.php": {
+    "plugins\/bluetooth\/core\/class\/bluetooth.class.php": {
         "Nouveau module detecté ' . $_def['type']": "New module detected '. $ _def ['type']",
         "Information manquante pour ajouter l\\'équipement. Inclusion impossible": "Missing information to add equipment. Impossible to include",
         "Module inclu avec succès ' .$_def['name'].' ' . $_def['id']": "Module successfully included '. $ _ Def [' name '].' '. $ _def ['id']",
@@ -365,7 +365,7 @@
         "Arret du démon distant": "Remote Demon Shutdown",
         "Le port n\\'est pas configuré": "Port is not configured",
         "Veuillez vérifier la configuration": "Please check the configuration",
-        "Impossible de lancer le démon blea, vérifiez la log": "Unable to launch the blea daemon, check the log",
+        "Impossible de lancer le démon bluetooth, vérifiez la log": "Unable to launch the bluetooth daemon, check the log",
         "Défaut": "Default",
         "Present": "Present",
         "Périphérique reconnu, intégration en cours": "Recognized device, integration in progress",

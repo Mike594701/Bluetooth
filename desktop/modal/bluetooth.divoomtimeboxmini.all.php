@@ -28,7 +28,7 @@ if (file_exists($file)) {
 }
 echo'<div class="form-group pull-right">
 			<span class="btn btn-success btn-file" style="width:100%;" title="Uploader un fichier">
-								<i class="fas fa-upload"></i><input id="bt_uploadFile" type="file" name="file" data-url="plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php?action=fileupload">
+								<i class="fas fa-upload"></i><input id="bt_uploadFile" type="file" name="file" data-url="plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php?action=fileupload">
 							</span>
 		</div>
 <a class="btn btn-warning bt_syncimages pull-right" title="Envoyer les fichiers images sur les antennes"><i class="fas fa-retweet"></i></a></br></br>';
@@ -69,7 +69,7 @@ foreach (ls($dir, '*') as $file) {
 	echo '<div class="miniImageName" data-name="' . $file .'"><span class="label label-info" style="font-size:1em;cursor:default">' . ucfirst($file) . '</span>
 <a class="btn btn-xs btn-success bt_renameImageMiniFile"><i class="fas fa-retweet"></i></a>
 <a class="btn btn-xs btn-danger bt_delImageMiniFile"><i class="fas fa-trash"></i></a></div>';
-echo '<center><img class="" src="plugins/blea/data/divoomtimeboxmini/'.$file . '" height="33"/></center>';
+echo '<center><img class="" src="plugins/bluetooth/data/divoomtimeboxmini/'.$file . '" height="33"/></center>';
 echo '</div>';
 }
 echo '</div>';
@@ -80,7 +80,7 @@ echo '</div>';
 $('.bt_syncimages').on('click', function () {
 		$.ajax({
 				type: "POST",
-				url: "plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
+				url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 				data: {
 					action: "sendFiles",
 				},
@@ -112,7 +112,7 @@ $('#bt_uploadFile').fileupload({
    $('.eventDisplayMini').showAlert({message: '{{Fichier(s) ajouté(s) avec succès}}', level: 'success'});
    $('#md_modal2').dialog('close');
 	$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-	$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.divoomtimeboxmini.all').dialog('open');
+	$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.divoomtimeboxmini.all').dialog('open');
   }
 });
 $('.bt_delImageMini').on('click', function () {
@@ -132,7 +132,7 @@ $('.bt_delImageMini').on('click', function () {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 							data: {
 								action: "delImage",
 								name: oriname
@@ -153,7 +153,7 @@ $('.bt_delImageMini').on('click', function () {
 								modifyWithoutSave=false;
 								$('#md_modal2').dialog('close');
 								$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-								$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.divoomtimeboxmini.all').dialog('open');
+								$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.divoomtimeboxmini.all').dialog('open');
 							}
 						});
 					}
@@ -179,7 +179,7 @@ $('.bt_delImageMini').on('click', function () {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 							data: {
 								action: "delImageFile",
 								name: oriname
@@ -200,7 +200,7 @@ $('.bt_delImageMini').on('click', function () {
 								modifyWithoutSave=false;
 								$('#md_modal2').dialog('close');
 								$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-								$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.divoomtimeboxmini.all').dialog('open');
+								$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.divoomtimeboxmini.all').dialog('open');
 							}
 						});
 					}
@@ -213,7 +213,7 @@ $('.bt_delImageMini').on('click', function () {
 		var oriname = $(this).closest('.miniImageName').attr('data-name');
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 			data: {
 				action: "loadImage",
 				name: oriname
@@ -259,7 +259,7 @@ $('.bt_delImageMini').on('click', function () {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 							data: {
 								action: "renameImage",
 								oriname: oriname,
@@ -281,7 +281,7 @@ $('.bt_delImageMini').on('click', function () {
 								setTimeout(function() { deleteAlertMini() }, 2000);
 								$('#md_modal2').dialog('close');
 								$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-								$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.divoomtimeboxmini.all').dialog('open');
+								$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.divoomtimeboxmini.all').dialog('open');
 								modifyWithoutSave=false;
 							}
 						});
@@ -314,7 +314,7 @@ $('.bt_delImageMini').on('click', function () {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 							data: {
 								action: "renameImageFile",
 								oriname: oriname,
@@ -336,7 +336,7 @@ $('.bt_delImageMini').on('click', function () {
 								setTimeout(function() { deleteAlertMini() }, 2000);
 								$('#md_modal2').dialog('close');
 								$('#md_modal2').dialog({title: "{{Votre Collection}}"});
-								$('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.divoomtimeboxmini.all').dialog('open');
+								$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.divoomtimeboxmini.all').dialog('open');
 								modifyWithoutSave=false;
 							}
 						});

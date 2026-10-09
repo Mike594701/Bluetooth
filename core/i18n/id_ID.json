@@ -1,5 +1,5 @@
 {
-    "plugins\/blea\/mobile\/html\/blea.html": {
+    "plugins\/bluetooth\/mobile\/html\/bluetooth.html": {
         "Arrêter Scan": "Arrêter Scan",
         "Lancer Scan": "Lancer Scan",
         "Santé": "Bidang Kesehatan",
@@ -10,7 +10,7 @@
         "Présent": "Présent",
         "Dernière comm": "Dernière comm"
     },
-    "plugins\/blea\/plugin_info\/configuration.php": {
+    "plugins\/bluetooth\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Général": "Umum",
         "Autoriser l'inclusion de devices inconnus": "Autoriser l'inclusion de devices inconnus",
@@ -47,15 +47,15 @@
         "55008": "55008",
         "Réussie": "Réussie",
         "Etes-vous sûr de vouloir mettre tous les équipements sur Local en : ": "Etes-vous sûr de vouloir mettre tous les équipements sur Local en :",
-        "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin Blea.": "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin Blea",
+        "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin bluetooth.": "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin bluetooth",
         "Téléchargement des configurations": "Téléchargement des configurations"
     },
-    "plugins\/blea\/desktop\/modal\/blea.dotti.all.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.dotti.all.php": {
         "Annuler": "Tidak jadi",
         "Continuer": "Continuer",
         "Votre Collection": "Votre Collection"
     },
-    "plugins\/blea\/desktop\/modal\/health.php": {
+    "plugins\/bluetooth\/desktop\/modal\/health.php": {
         "Image": "Gambar",
         "Module": "Modul",
         "ID": "ID",
@@ -77,7 +77,7 @@
         "Oui": "Ya",
         "Non": "Tidak"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoompixoo.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoompixoo.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "L\\'id de l\\'équipement ne peut etre vide :",
         "Couleur": "Warna",
         "Remplir": "Remplir",
@@ -91,7 +91,7 @@
         "Annuler": "Tidak jadi",
         "Continuer": "Continuer"
     },
-    "plugins\/blea\/desktop\/modal\/blea.dotti.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.dotti.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "L\\'id de l\\'équipement ne peut etre vide :",
         "Couleur": "Warna",
         "Remplir": "Remplir",
@@ -106,7 +106,7 @@
         "Annuler": "Tidak jadi",
         "Continuer": "Continuer"
     },
-    "plugins\/blea\/desktop\/modal\/blea.miscale.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.miscale.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "EqLogic ID ne peut être vide": "EqLogic ID ne peut être vide",
         "EqLogic non trouvé": "EqLogic non trouvé",
@@ -119,7 +119,7 @@
         "Sex": "Sex",
         "Action": "Tindakan"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoomtimeboxmini.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoomtimeboxmini.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "L\\'id de l\\'équipement ne peut etre vide :",
         "Couleur": "Warna",
         "Remplir": "Remplir",
@@ -133,18 +133,18 @@
         "Annuler": "Tidak jadi",
         "Continuer": "Continuer"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoomtimeboxmini.all.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoomtimeboxmini.all.php": {
         "Fichier(s) ajouté(s) avec succès": "File (s) ditambahkan (s) berhasil",
         "Votre Collection": "Votre Collection",
         "Annuler": "Tidak jadi",
         "Continuer": "Continuer"
     },
-    "plugins\/blea\/desktop\/modal\/syncconf.blea.php": {
+    "plugins\/bluetooth\/desktop\/modal\/syncconf.bluetooth.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Pause": "Berhenti Sebentar",
         "Rechercher": "Pencarian"
     },
-    "plugins\/blea\/desktop\/modal\/blea.miscale2.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.miscale2.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "EqLogic ID ne peut être vide": "EqLogic ID ne peut être vide",
         "EqLogic non trouvé": "EqLogic non trouvé",
@@ -157,7 +157,7 @@
         "Sex": "Sex",
         "Action": "Tindakan"
     },
-    "plugins\/blea\/desktop\/modal\/blea.remote.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.remote.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Ajouter Antenne": "Ajouter Antenne",
         "Rafraichir": "Dingin",
@@ -201,20 +201,20 @@
         "Arrêt réussi": "Arrêt réussi",
         "Etês-vous sûr de vouloir supprimer cette Antenne ?": "Etês-vous sûr de vouloir supprimer cette Antenne ?"
     },
-    "plugins\/blea\/desktop\/modal\/blea.graph.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.graph.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Position Antennes": "Position Antennes",
         "Représentation relative de la puissance des liens sur les antennes. Vous pouvez déplacer les antennes et sauver leur position pour les retrouver à la même place. Concernant les équipements, ceux-ci prennent une position d'équilibre (vous pouvez aussi les déplacer mais ils s'équilibreront). Si les antennes sont toutes d'un coté de l'équipement, il peut y avoir plusieurs positions d'équilibres de part et d'autres. Cependant dans le cas d'un équipement avec des antennes autour de lui (le plus en triangle possible), il y aura une seule position d'équilibre qui sera proche de la réelle. Certains modules comme les NIU émettent que lors de l'appui, donc au bout d'un moment il n'y a plus de signal, à ce moment là les modules sont rattachés virtuellement à l'antenne local via des pointillés": "Représentation relative de la puissance des liens sur les antennes. Vous pouvez déplacer les antennes et sauver leur position pour les retrouver à la même place. Concernant les équipements, ceux-ci prennent une position d'équilibre (vous pouvez aussi les déplacer mais ils s'équilibreront). Si les antennes sont toutes d'un coté de l'équipement, il peut y avoir plusieurs positions d'équilibres de part et d'autres. Cependant dans le cas d'un équipement avec des antennes autour de lui (le plus en triangle possible), il y aura une seule position d'équilibre qui sera proche de la réelle. Certains modules comme les NIU émettent que lors de l'appui, donc au bout d'un moment il n'y a plus de signal, à ce moment là les modules sont rattachés virtuellement à l'antenne local via des pointillés",
-        "Réseau BLEA": "Réseau BLEA"
+        "Réseau bluetooth": "Réseau bluetooth"
     },
-    "plugins\/blea\/desktop\/modal\/blea.divoompixoo.all.php": {
+    "plugins\/bluetooth\/desktop\/modal\/bluetooth.divoompixoo.all.php": {
         "L\\'id de l\\'équipement ne peut etre vide : ": "L\\'id de l\\'équipement ne peut etre vide :",
         "Fichier(s) ajouté(s) avec succès": "File (s) ditambahkan (s) berhasil",
         "Votre Collection": "Votre Collection",
         "Annuler": "Tidak jadi",
         "Continuer": "Continuer"
     },
-    "plugins\/blea\/desktop\/php\/blea.php": {
+    "plugins\/bluetooth\/desktop\/php\/bluetooth.php": {
         "Vous êtes en mode scan. Recliquez sur le bouton scan pour sortir de ce mode (sinon le mode restera actif une minute)": "Vous êtes en mode scan. Recliquez sur le bouton scan pour sortir de ce mode (sinon le mode restera actif une minute)",
         "Gestion": "Manajemen",
         "Arrêter Scan": "Arrêter Scan",
@@ -223,9 +223,9 @@
         "Santé": "Bidang Kesehatan",
         "Réseau": "Réseau",
         "Antennes": "Antennes",
-        "Mes devices Blea Connus": "Mes devices Blea Connus",
+        "Mes devices bluetooth Connus": "Mes devices bluetooth Connus",
         "Rechercher": "Pencarian",
-        "Mes devices Blea Inconnus": "Mes devices Blea Inconnus",
+        "Mes devices bluetooth Inconnus": "Mes devices bluetooth Inconnus",
         "Recréer les commandes": "Recréer les commandes",
         "Configuration avancée": "Konfigurasi lanjutan",
         "Configuration spécifique": "Configuration spécifique",
@@ -263,15 +263,15 @@
         "Logical ID (info) ou Commande brute (action)": "Logis ID (Info) atau gross Control (share)",
         "Options": "Pilihan"
     },
-    "plugins\/blea\/desktop\/js\/blea.js": {
-        "Inclusion BLEA": "Inclusion BLEA",
+    "plugins\/bluetooth\/desktop\/js\/bluetooth.js": {
+        "Inclusion bluetooth": "Inclusion bluetooth",
         "Quel type de produit voulez-vous inclure : ": "Quel type de produit voulez-vous inclure :",
         "Tous": "Semua",
         "Choisissez le type de produit que vous souhaitez ajouter": "Choisissez le type de produit que vous souhaitez ajouter",
         "Annuler": "Tidak jadi",
         "Démarrer": "Awal",
-        "Santé BLEA": "Santé BLEA",
-        "Réseau BLEA": "Réseau BLEA",
+        "Santé bluetooth": "Santé bluetooth",
+        "Réseau bluetooth": "Réseau bluetooth",
         "Configuration spécifique": "Configuration spécifique",
         "Gestion des antennes bluetooth": "Gestion des antennes bluetooth",
         "Réglages avancées": "Réglages avancées",
@@ -296,16 +296,16 @@
         "Lancer Scan": "Lancer Scan",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Sebuah perangkat hanya \\ dimasukkan \/ dikeluarkan. Muat ulang halaman"
     },
-    "plugins\/blea\/core\/php\/jeeBlea.php": {
+    "plugins\/bluetooth\/core\/php\/jeebluetooth.php": {
         "Aucun équipement trouvé pour : ": "Aucun équipement trouvé pour :",
         "Rssi '. $datas['source']": "Rssi '. $datas['source']",
         "Present '. $datas['source']": "Present '. $datas['source']"
     },
-    "plugins\/blea\/core\/config\/devices\/miscale\/class\/miscale.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/miscale\/class\/miscale.class.php": {
         "Poids ' . $user['name']": "Poids ' . $user['name']",
         "$value['name'] . ' ' . $user['name']": "$value['name'] . ' ' . $user['name']"
     },
-    "plugins\/blea\/core\/config\/devices\/divoomtimeboxmini\/ajax\/divoomtimeboxmini.ajax.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoomtimeboxmini\/ajax\/divoomtimeboxmini.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé :",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
@@ -314,23 +314,23 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
-    "plugins\/blea\/core\/config\/devices\/divoomtimeboxmini\/class\/divoomtimeboxmini.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoomtimeboxmini\/class\/divoomtimeboxmini.class.php": {
         "Décompression du dossier distant": "Décompression du dossier distant",
         "Suppression du zip local": "Suppression du zip local",
         "Finie": "Finie"
     },
-    "plugins\/blea\/core\/config\/devices\/dotti\/ajax\/dotti.ajax.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/dotti\/ajax\/dotti.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
-    "plugins\/blea\/core\/config\/devices\/dotti\/class\/dotti.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/dotti\/class\/dotti.class.php": {
         "Le champs message doit être un numérique : ": "Le champs message doit être un numérique :"
     },
-    "plugins\/blea\/core\/config\/devices\/miscale2\/class\/miscale2.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/miscale2\/class\/miscale2.class.php": {
         "Poids ' . $user['name']": "Poids ' . $user['name']",
         "$value['name'] . ' ' . $user['name']": "$value['name'] . ' ' . $user['name']"
     },
-    "plugins\/blea\/core\/config\/devices\/divoompixoo\/ajax\/divoompixoo.ajax.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoompixoo\/ajax\/divoompixoo.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé :",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
@@ -339,17 +339,17 @@
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
     },
-    "plugins\/blea\/core\/config\/devices\/divoompixoo\/class\/divoompixoo.class.php": {
+    "plugins\/bluetooth\/core\/config\/devices\/divoompixoo\/class\/divoompixoo.class.php": {
         "Décompression du dossier distant": "Décompression du dossier distant",
         "Suppression du zip local": "Suppression du zip local",
         "Finie": "Finie"
     },
-    "plugins\/blea\/core\/ajax\/blea.ajax.php": {
-        "Blea eqLogic non trouvé : ": "Blea eqLogic non trouvé :",
+    "plugins\/bluetooth\/core\/ajax\/bluetooth.ajax.php": {
+        "bluetooth eqLogic non trouvé : ": "bluetooth eqLogic non trouvé :",
         "Remote inconnu : ": "Remote inconnu :",
-        "Erreur, vérifiez la log Blea": "Erreur, vérifiez la log Blea"
+        "Erreur, vérifiez la log bluetooth": "Erreur, vérifiez la log bluetooth"
     },
-    "plugins\/blea\/core\/class\/blea.class.php": {
+    "plugins\/bluetooth\/core\/class\/bluetooth.class.php": {
         "Nouveau module detecté ' . $_def['type']": "Nouveau module detecté ' . $_def['type']",
         "Information manquante pour ajouter l\\'équipement. Inclusion impossible": "Information manquante pour ajouter l\\'équipement. Inclusion impossible",
         "Module inclu avec succès ' .$_def['name'].' ' . $_def['id']": "Module inclu avec succès ' .$_def['name'].' ' . $_def['id']",
@@ -365,7 +365,7 @@
         "Arret du démon distant": "Arret du démon distant",
         "Le port n\\'est pas configuré": "Le port n\\'est pas configuré",
         "Veuillez vérifier la configuration": "Veuillez vérifier la configuration",
-        "Impossible de lancer le démon blea, vérifiez la log": "Impossible de lancer le démon blea, vérifiez la log",
+        "Impossible de lancer le démon bluetooth, vérifiez la log": "Impossible de lancer le démon bluetooth, vérifiez la log",
         "Défaut": "Kesalahan",
         "Present": "Present",
         "Périphérique reconnu, intégration en cours": "Périphérique reconnu, intégration en cours",

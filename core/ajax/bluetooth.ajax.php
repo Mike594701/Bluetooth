@@ -27,12 +27,12 @@ try {
 	ajax::init();
 
 	if (init('action') == 'changeIncludeState') {
-		blea::changeIncludeState(init('state'), init('mode'), init('type'));
+		bluetooth::changeIncludeState(init('state'), init('mode'), init('type'));
 		ajax::success();
 	}
 	
 	if (init('action') == 'deleteUnknown') {
-		$eqLogics = eqLogic::byType('blea');
+		$eqLogics = eqLogic::byType('bluetooth');
 		foreach ($eqLogics as $eqLogic) {
 			if ($eqLogic->getConfiguration('device','') == 'default') {
 				if ($eqLogic->getObject_id()==''){
@@ -45,7 +45,7 @@ try {
 	
 	if (init('action') == 'getAllTypes') {
 		$list = array();
-		$allconfs = blea::devicesParameters();
+		$allconfs = bluetooth::devicesParameters();
 		foreach ($allconfs as $key=>$data){
 			$list[$data['name']] = $data['configuration']['name'];
 		}
@@ -56,24 +56,24 @@ try {
 	if (init('action') == 'allantennas') {
 		if (init('remote') == 'local') {
 			if (init('type') == 'reception'){
-				foreach (eqLogic::byType('blea') as $eqLogic){
+				foreach (eqLogic::byType('bluetooth') as $eqLogic){
 					$eqLogic->setConfiguration('antennareceive','local');
 					$eqLogic->save();
 				}
 			} else {
-				foreach (eqLogic::byType('blea') as $eqLogic){
+				foreach (eqLogic::byType('bluetooth') as $eqLogic){
 					$eqLogic->setConfiguration('antenna','local');
 					$eqLogic->save();
 				}
 			}
 		} else {
 			if (init('type') == 'reception'){
-				foreach (eqLogic::byType('blea') as $eqLogic){
+				foreach (eqLogic::byType('bluetooth') as $eqLogic){
 					$eqLogic->setConfiguration('antennareceive',init('remoteId'));
 					$eqLogic->save();
 				}
 			} else {
-				foreach (eqLogic::byType('blea') as $eqLogic){
+				foreach (eqLogic::byType('bluetooth') as $eqLogic){
 					$eqLogic->setConfiguration('antenna',init('remoteId'));
 					$eqLogic->save();
 				}
@@ -82,43 +82,43 @@ try {
 		ajax::success();
 	}
 	
-	if (init('action') == 'syncconfBlea') {
-		blea::syncconfBlea(false);
+	if (init('action') == 'syncconfbluetooth') {
+		bluetooth::syncconfbluetooth(false);
 		ajax::success();
 	}
 
 	if (init('action') == 'getMobileGraph') {
-		ajax::success(blea::getMobileGraph());
+		ajax::success(bluetooth::getMobileGraph());
 	}
 
 	if (init('action') == 'getMobileHealth') {
-		ajax::success(blea::getMobileHealth());
+		ajax::success(bluetooth::getMobileHealth());
 	}
 
 	if (init('action') == 'saveAntennaPosition') {
-		ajax::success(blea::saveAntennaPosition(init('antennas')));
+		ajax::success(bluetooth::saveAntennaPosition(init('antennas')));
 	}
 	
 	if (init('action') == 'launchremotes') {
-		ajax::success(blea::launch_allremotes());
+		ajax::success(bluetooth::launch_allremotes());
 	}
 	
 	if (init('action') == 'sendremotes') {
-		ajax::success(blea::send_allremotes());
+		ajax::success(bluetooth::send_allremotes());
 	}
 	
 	if (init('action') == 'updateremotes') {
-		ajax::success(blea::update_allremotes());
+		ajax::success(bluetooth::update_allremotes());
 	}
 	
 	if (init('action') == 'stopremotes') {
-		ajax::success(blea::stop_allremotes());
+		ajax::success(bluetooth::stop_allremotes());
 	}
 
 	if (init('action') == 'autoDetectModule') {
-		$eqLogic = blea::byId(init('id'));
+		$eqLogic = bluetooth::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('Blea eqLogic non trouvé : ', __FILE__) . init('id'));
+			throw new Exception(__('bluetooth eqLogic non trouvé : ', __FILE__) . init('id'));
 		}
 		if (init('createcommand') == 1){
 			foreach ($eqLogic->getCmd() as $cmd) {
@@ -131,90 +131,90 @@ try {
 	}
 
 	if (init('action') == 'getModelListParam') {
-		$blea = blea::byId(init('id'));
-		if (!is_object($blea)) {
+		$bluetooth = bluetooth::byId(init('id'));
+		if (!is_object($bluetooth)) {
 			ajax::success(array());
 		}
-		ajax::success($blea->getModelListParam(init('conf')));
+		ajax::success($bluetooth->getModelListParam(init('conf')));
 	}
 
-	if (init('action') == 'save_bleaRemote') {
-		$bleaRemoteSave = jeedom::fromHumanReadable(json_decode(init('blea_remote'), true));
-		$blea_remote = blea_remote::byId($bleaRemoteSave['id']);
-		if (!is_object($blea_remote)) {
-			$blea_remote = new blea_remote();
+	if (init('action') == 'save_bluetoothRemote') {
+		$bluetoothRemoteSave = jeedom::fromHumanReadable(json_decode(init('bluetooth_remote'), true));
+		$bluetooth_remote = bluetooth_remote::byId($bluetoothRemoteSave['id']);
+		if (!is_object($bluetooth_remote)) {
+			$bluetooth_remote = new bluetooth_remote();
 		}
-		utils::a2o($blea_remote, $bleaRemoteSave);
-		$blea_remote->save();
-		ajax::success(utils::o2a($blea_remote));
+		utils::a2o($bluetooth_remote, $bluetoothRemoteSave);
+		$bluetooth_remote->save();
+		ajax::success(utils::o2a($bluetooth_remote));
 	}
 
-	if (init('action') == 'get_bleaRemote') {
-		$blea_remote = blea_remote::byId(init('id'));
-		if (!is_object($blea_remote)) {
+	if (init('action') == 'get_bluetoothRemote') {
+		$bluetooth_remote = bluetooth_remote::byId(init('id'));
+		if (!is_object($bluetooth_remote)) {
 			throw new Exception(__('Remote inconnu : ', __FILE__) . init('id'), 9999);
 		}
-		ajax::success(jeedom::toHumanReadable(utils::o2a($blea_remote)));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($bluetooth_remote)));
 	}
 
-	if (init('action') == 'remove_bleaRemote') {
-		$blea_remote = blea_remote::byId(init('id'));
-		if (!is_object($blea_remote)) {
+	if (init('action') == 'remove_bluetoothRemote') {
+		$bluetooth_remote = bluetooth_remote::byId(init('id'));
+		if (!is_object($bluetooth_remote)) {
 			throw new Exception(__('Remote inconnu : ', __FILE__) . init('id'), 9999);
 		}
-		$blea_remote->remove();
+		$bluetooth_remote->remove();
 		ajax::success();
 	}
 
 	if (init('action') == 'sendRemoteFiles') {
-		if (!blea::sendRemoteFiles(init('remoteId'))) {
-			ajax::error(__('Erreur, vérifiez la log Blea', __FILE__));
+		if (!bluetooth::sendRemoteFiles(init('remoteId'))) {
+			ajax::error(__('Erreur, vérifiez la log bluetooth', __FILE__));
 		}
 		ajax::success();
     }
 
 	if (init('action') == 'getRemoteLog') {
-		if (!blea::getRemoteLog(init('remoteId'))) {
-			ajax::error(__('Erreur, vérifiez la log Blea', __FILE__));
+		if (!bluetooth::getRemoteLog(init('remoteId'))) {
+			ajax::error(__('Erreur, vérifiez la log bluetooth', __FILE__));
 		}
 		ajax::success();
      }
 
 	 if (init('action') == 'getRemoteLogDependancy') {
-		if (!blea::getRemoteLog(init('remoteId'),'_dependancy')) {
-			ajax::error(__('Erreur, vérifiez la log Blea', __FILE__));
+		if (!bluetooth::getRemoteLog(init('remoteId'),'_dependancy')) {
+			ajax::error(__('Erreur, vérifiez la log bluetooth', __FILE__));
 		}
 		ajax::success();
      }
 
 	 if (init('action') == 'launchremote') {
-		if (!blea::launchremote(init('remoteId'))) {
-			ajax::error(__('Erreur, vérifiez la log Blea', __FILE__));
+		if (!bluetooth::launchremote(init('remoteId'))) {
+			ajax::error(__('Erreur, vérifiez la log bluetooth', __FILE__));
 		}
 		ajax::success();
      }
 
 	 if (init('action') == 'stopremote') {
-		if (!blea::stopremote(init('remoteId'))) {
-			ajax::error(__('Erreur, vérifiez la log Blea', __FILE__));
+		if (!bluetooth::stopremote(init('remoteId'))) {
+			ajax::error(__('Erreur, vérifiez la log bluetooth', __FILE__));
 		}
 		ajax::success();
      }
 
 	 if (init('action') == 'remotelearn') {
-        ajax::success(blea::remotelearn(init('remoteId'), init('state')));
+        ajax::success(bluetooth::remotelearn(init('remoteId'), init('state')));
      }
 
 	 if (init('action') == 'dependancyRemote') {
-        ajax::success(blea::dependancyRemote(init('remoteId')));
+        ajax::success(bluetooth::dependancyRemote(init('remoteId')));
      }
 
 	 if (init('action') == 'aliveremote') {
-        ajax::success(blea::aliveremote(init('remoteId')));
+        ajax::success(bluetooth::aliveremote(init('remoteId')));
      }
 
 	if (init('action') == 'changeLogLive') {
-		ajax::success(blea::changeLogLive(init('level')));
+		ajax::success(bluetooth::changeLogLive(init('level')));
 	}
 
 	throw new Exception('Aucune methode correspondante');

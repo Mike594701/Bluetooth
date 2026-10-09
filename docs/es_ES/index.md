@@ -1,5 +1,5 @@
 
-# Complemento BLEA (anuncio de Bluetooth)
+# Complemento bluetooth (anuncio de Bluetooth)
 
 Este complemento es un complemento que le permite recibir eventos de ciertos dispositivos bluetooth (como NIU de Nodon y otros)
 
@@ -27,7 +27,7 @@ También puede verificar el estado de las dependencias y reiniciarlas. En caso d
 
 Rendez vous dans le menu Plugins &gt; Protocole Domotique pour retrouver le plugin.
 
-![blea screenshot1](../images/blea_screenshot1.jpg)
+![bluetooth screenshot1](../images/bluetooth_screenshot1.jpg)
 
 En esta página puedes ver los módulos ya incluidos.
 
@@ -38,7 +38,7 @@ En la parte superior de esta página, tiene varios botones.
 - Botón de configuración : este botón abre la ventana de configuración del complemento.
 - Botón de salud : Este botón le permite tener una visión general del estado de todos sus módulos.
 
-![blea screenshot2](../images/blea_screenshot2.jpg)
+![bluetooth screenshot2](../images/bluetooth_screenshot2.jpg)
 
 # Equipement
 
@@ -67,11 +67,11 @@ NIU es muy fácil de incluir, ponga Jeedom en Inclusion y luego presione el bot�
 
 Una vez que se crea la NIU, obtendrá esto :
 
-![blea screenshot3](../images/blea_screenshot3.jpg)
+![bluetooth screenshot3](../images/bluetooth_screenshot3.jpg)
 
 Tendrás 4 pedidos :
 
-![blea commands niu](../images/blea_commands_niu.jpg)
+![bluetooth commands niu](../images/bluetooth_commands_niu.jpg)
 
 - ButtonId : da una representación digital del tipo de soporte (ideal para escenarios)
   - 01 : prensa simple
@@ -112,10 +112,10 @@ Debe ir a la página de complementos (Complementos> Protocolo de automatización
 
 Si no hubo ningún error y su antena está bien creada en el complemento, ahora debe instalar las dependencias necesarias y ejecutar el demonio en la antena que se encargará de hacer el enlace entre los dispositivos Bluetooth en alcance de la antena y el complemento (y, por lo tanto, Jeedom).
 
-1) Haga clic en el botón "Enviar archivos", puede tardar un poco, por favor espere. Aparecerá un banner verde que confirma el éxito, rojo si ha habido un problema. En este caso, verifique el registro "Blea", verifique la configuración (ip, usuario, contraseña), ...)
-2) Luego haga clic en el botón "Iniciar dependencias"". De nuevo, puede llevar tiempo, por favor espere. Un banner verde confirmará el éxito o rojo si no (igual, verifique el registro de Blea)
+1) Haga clic en el botón "Enviar archivos", puede tardar un poco, por favor espere. Aparecerá un banner verde que confirma el éxito, rojo si ha habido un problema. En este caso, verifique el registro "bluetooth", verifique la configuración (ip, usuario, contraseña), ...)
+2) Luego haga clic en el botón "Iniciar dependencias"". De nuevo, puede llevar tiempo, por favor espere. Un banner verde confirmará el éxito o rojo si no (igual, verifique el registro de bluetooth)
 3) Opcional, puede recuperar manualmente el registro de instalación de dependencias haciendo clic en "Registro de dependencias" y verificar el registro, un archivo de registro específico estará disponible en la configuración del complemento.
-4) Si todo va bien, puede hacer clic en "Lanzar el demonio", después de un máximo de un minuto la fecha de la última comunicación debería actualizarse, esto significa que el demonio se está comunicando correctamente con el complemento BLEA.
+4) Si todo va bien, puede hacer clic en "Lanzar el demonio", después de un máximo de un minuto la fecha de la última comunicación debería actualizarse, esto significa que el demonio se está comunicando correctamente con el complemento bluetooth.
 5) Último paso opcional pero recomendado: activar la gestión automática del demonio haciendo clic en el botón correspondiente. Esto hará que el complemento intente reiniciar automáticamente el demonio remoto en caso de pérdida de conexión (útil si su pi remoto se ha desconectado temporalmente de la red eléctrica o se ha reiniciado después de las actualizaciones).
 
 
@@ -123,4 +123,4 @@ Si no hubo ningún error y su antena está bien creada en el complemento, ahora 
 
 Algunos equipos como el lywsd03 deben agregarse a mihome al menos una vez antes de estar activo
 
-Puedes encontrar [aquí](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=blea) la lista de equipos compatibles
+Puedes encontrar [aquí](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=bluetooth) la lista de equipos compatibles

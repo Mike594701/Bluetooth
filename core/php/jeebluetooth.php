@@ -17,7 +17,7 @@
  */
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 
-if (!jeedom::apiAccess(init('apikey'), 'blea')) {
+if (!jeedom::apiAccess(init('apikey'), 'bluetooth')) {
 	echo 'Clef API non valide, vous n\'etes pas autorisé à effectuer cette action';
 	die();
 }
@@ -32,23 +32,23 @@ if (!is_array($result)) {
 }
 if (isset($result['learn_mode'])) {
 	if ($result['learn_mode'] == 1) {
-		config::save('include_mode', 1, 'blea');
-		event::add('blea::includeState', array(
+		config::save('include_mode', 1, 'bluetooth');
+		event::add('bluetooth::includeState', array(
 			'mode' => 'learn',
 			'state' => 1)
 		);
 	} else {
-		config::save('include_mode', 0, 'blea');
-		event::add('blea::includeState', array(
+		config::save('include_mode', 0, 'bluetooth');
+		event::add('bluetooth::includeState', array(
 			'mode' => 'learn',
 			'state' => 0)
 		);
 	}
 }
-$remotes = blea_remote::getCacheRemotes('allremotes',array());
+$remotes = bluetooth_remote::getCacheRemotes('allremotes',array());
 if (isset($result['started'])) {
 	if ($result['started'] == 1) {
-		log::add('blea','info','Antenna ' . $result['source'] . ' alive sending known devices');
+		log::add('bluetooth','info','Antenna ' . $result['source'] . ' alive sending known devices');
 		if ($result['source'] != 'local'){
 			foreach ($remotes as $remote){
 				if ($remote->getRemoteName() == $result['source']){
@@ -66,22 +66,22 @@ if (isset($result['started'])) {
 				}
 			}
 		} else {
-			$oldversion = config::byKey('version','blea','1.0');
+			$oldversion = config::byKey('version','bluetooth','1.0');
 			$version = '1.0';
 			if (isset($result['version'])){
 				$version = $result['version'];
 			}
 			if ($version != $oldversion){
-				config::save('version',$version,'blea');
+				config::save('version',$version,'bluetooth');
 			}
 		}
 		usleep(500);
-		blea::sendIdToDeamon($result['source']);
+		bluetooth::sendIdToDeamon($result['source']);
 	}
 }
 if (isset($result['heartbeat'])) {
 	if ($result['heartbeat'] == 1) {
-		log::add('blea','info','This is a heartbeat from antenna ' . $result['source']);
+		log::add('bluetooth','info','This is a heartbeat from antenna ' . $result['source']);
 		if ($result['source'] != 'local'){
 			foreach ($remotes as $remote){
 				if ($remote->getRemoteName() == $result['source']){
@@ -108,43 +108,43 @@ if (isset($result['devices'])) {
 				}
 			}
 		}
-		$blea = blea::byLogicalId($datas['id'], 'blea');
-		if (!is_object($blea)) {
+		$bluetooth = bluetooth::byLogicalId($datas['id'], 'bluetooth');
+		if (!is_object($bluetooth)) {
 			if ($datas['learn'] != 1) {
 				continue;
 			}
-			log::add('blea','info','This is a learn from antenna ' . $datas['source']);
-			$blea = blea::createFromDef($datas);
-			if (!is_object($blea)) {
-				log::add('blea', 'debug', __('Aucun équipement trouvé pour : ', __FILE__) . secureXSS($datas['id']));
+			log::add('bluetooth','info','This is a learn from antenna ' . $datas['source']);
+			$bluetooth = bluetooth::createFromDef($datas);
+			if (!is_object($bluetooth)) {
+				log::add('bluetooth', 'debug', __('Aucun équipement trouvé pour : ', __FILE__) . secureXSS($datas['id']));
 				continue;
 			}
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
-				'page' => 'blea',
+				'page' => 'bluetooth',
 				'message' => '',
 			));
 			foreach ($remotes as $remote){
 				if ($remote->getRemoteName() == $datas['source']){
-					$blea->setConfiguration('antennareceive',$remote->getId());
-					$blea->setConfiguration('antenna',$remote->getId());
-					$blea->save();
+					$bluetooth->setConfiguration('antennareceive',$remote->getId());
+					$bluetooth->setConfiguration('antenna',$remote->getId());
+					$bluetooth->save();
 					break;
 				}
 			}
-			event::add('blea::includeDevice', $blea->getId());
+			event::add('bluetooth::includeDevice', $bluetooth->getId());
 		}
-		if (!$blea->getIsEnable()) {
+		if (!$bluetooth->getIsEnable()) {
 			continue;
 		}
 		if (isset($datas['specificconfiguration'])) {
-			$blea->setConfiguration('specificconfiguration',$datas['specificconfiguration']);
-			$blea->save();
+			$bluetooth->setConfiguration('specificconfiguration',$datas['specificconfiguration']);
+			$bluetooth->save();
 		}
 		if (isset($datas['rssi'])) {
-			$rssicmd = $blea->getCmd(null, 'rssi' . $datas['source']);
+			$rssicmd = $bluetooth->getCmd(null, 'rssi' . $datas['source']);
 			if (!is_object($rssicmd)) {
-				$rssicmd = new bleaCmd();
+				$rssicmd = new bluetoothCmd();
 				$rssicmd->setLogicalId('rssi' . $datas['source']);
 				$rssicmd->setIsVisible(0);
 				$rssicmd->setIsHistorized(0);
@@ -152,7 +152,7 @@ if (isset($result['devices'])) {
 				$rssicmd->setType('info');
 				$rssicmd->setSubType('numeric');
 				$rssicmd->setUnite('dbm');
-				$rssicmd->setEqLogic_id($blea->getId());
+				$rssicmd->setEqLogic_id($bluetooth->getId());
 				$rssicmd->save();
 			}
 			if ($rssicmd->getConfiguration('returnStateValue') == -200 || $rssicmd->getConfiguration('returnStateTime') == 2){
@@ -160,9 +160,9 @@ if (isset($result['devices'])) {
 				$rssicmd->setConfiguration('returnStateTime','');
 				$rssicmd->save();
 			}
-			$presentcmd = $blea->getCmd(null, 'present' . $datas['source']);
+			$presentcmd = $bluetooth->getCmd(null, 'present' . $datas['source']);
 			if (!is_object($presentcmd)) {
-				$presentcmd = new bleaCmd();
+				$presentcmd = new bluetoothCmd();
 				$presentcmd->setLogicalId('present' . $datas['source']);
 				$presentcmd->setIsVisible(0);
 				$presentcmd->setIsHistorized(0);
@@ -171,28 +171,28 @@ if (isset($result['devices'])) {
 				$presentcmd->setSubType('binary');
 				$presentcmd->setTemplate('dashboard','line');
 				$presentcmd->setTemplate('mobile','line');
-				$presentcmd->setEqLogic_id($blea->getId());
+				$presentcmd->setEqLogic_id($bluetooth->getId());
 				$presentcmd->save();
 			}
-			$oldrssi = $blea->getCache('rssi' . $datas['source'],-200);
+			$oldrssi = $bluetooth->getCache('rssi' . $datas['source'],-200);
 			$delta = abs($oldrssi-$datas['rssi']);
 			if ($delta >= 10){
-				$blea->checkAndUpdateCmd($rssicmd,$datas['rssi']);
-				$blea->setCache('rssi' . $datas['source'],$datas['rssi']);
+				$bluetooth->checkAndUpdateCmd($rssicmd,$datas['rssi']);
+				$bluetooth->setCache('rssi' . $datas['source'],$datas['rssi']);
 			}
-			$blea->checkAndUpdateCmd($presentcmd,$datas['present']);
+			$bluetooth->checkAndUpdateCmd($presentcmd,$datas['present']);
 		}
-		if ($blea->getConfiguration('specificclass',0) != 0) {
-			$device= $blea->getConfiguration('device');
+		if ($bluetooth->getConfiguration('specificclass',0) != 0) {
+			$device= $bluetooth->getConfiguration('device');
 			require_once dirname(__FILE__) . '/../config/devices/'.$device.'/class/'.$device.'.class.php';
-			$class= $device.'blea';
+			$class= $device.'bluetooth';
 			$childrenclass = new $class();
-			$datas = $childrenclass->calculateInputValue($blea,$datas);
+			$datas = $childrenclass->calculateInputValue($bluetooth,$datas);
 		}
 		if (isset($datas['battery'])){
-			$blea->batteryStatus($datas['battery']);
+			$bluetooth->batteryStatus($datas['battery']);
 		}
-		foreach ($blea->getCmd('info') as $cmd) {
+		foreach ($bluetooth->getCmd('info') as $cmd) {
 			$logicalId = $cmd->getLogicalId();
 			if ($logicalId == '') {
 				continue;
@@ -209,9 +209,9 @@ if (isset($result['devices'])) {
 				$value = $value[$key];
 			}
 			if (!is_array($value)) {
-				$blea->checkAndUpdateCmd($cmd,$value);
+				$bluetooth->checkAndUpdateCmd($cmd,$value);
 			}
 		}
-		$blea->computePresence();
+		$bluetooth->computePresence();
 	}
 }

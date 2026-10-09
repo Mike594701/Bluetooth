@@ -1,5 +1,5 @@
 {
-    "id": "blea",
+    "id": "bluetooth",
     "name": "Bluetooth Advertisement",
     "description": {
         "fr_FR": "Plugin pour la gestion de certains devices qui fonctionnent en bluetooth advertisement comme les NIUS de Nodon Pour les NIUS il permet de detecter les différents appuis. Pour certains autres devices il permet de faire de la présence. Aussi compatible avec les boutons ticatag (avec gestion des multiples appuis température et action pour le faire sonner) Compatible Mi flora, Mi scale , awox smartplug, playbulb, miband1 et 1s",
@@ -16,13 +16,13 @@
     "licence": "AGPL",
     "author": "Jeedom SAS",
     "require": "3.0",
-    "mobile": "blea",
+    "mobile": "bluetooth",
     "category": "automation protocol",
     "maxDependancyInstallTime": 60,
     "hasOwnDeamon": true,
     "hasDependency": true,
-    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/blea\/changelog",
-    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/blea\/",
+    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/bluetooth\/changelog",
+    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/bluetooth\/",
     "language": [
         "fr_FR",
         "en_US",
@@ -44,6 +44,6 @@
         "mobile",
         "v4"
     ],
-    "changelog_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/blea\/beta\/changelog",
-    "documentation_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/blea\/beta"
+    "changelog_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/bluetooth\/beta\/changelog",
+    "documentation_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/bluetooth\/beta"
 }

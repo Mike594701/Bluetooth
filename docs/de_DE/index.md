@@ -1,5 +1,5 @@
 
-# BLEA-Plugin (Bluetooth-Werbung)
+# bluetooth-Plugin (Bluetooth-Werbung)
 
 Dieses Plugin ist ein Plugin, mit dem Sie Ereignisse von bestimmten Bluetooth-Geräten (z. B. NIU von Nodon und anderen) empfangen können)
 
@@ -27,7 +27,7 @@ Sie können auch den Status von Abhängigkeiten überprüfen und neu starten. St
 
 Rendez vous dans le menu Plugins &gt; Protocole Domotique pour retrouver le plugin.
 
-![blea screenshot1](../images/blea_screenshot1.jpg)
+![bluetooth screenshot1](../images/bluetooth_screenshot1.jpg)
 
 Auf dieser Seite sehen Sie die bereits enthaltenen Module.
 
@@ -38,7 +38,7 @@ Im oberen Teil dieser Seite befinden sich mehrere Schaltflächen.
 - Konfigurationsschaltfläche : Diese Schaltfläche öffnet das Plugin-Konfigurationsfenster.
 - Gesundheitstaste : Mit dieser Schaltfläche erhalten Sie einen Überblick über den Zustand aller Ihrer Module.
 
-![blea screenshot2](../images/blea_screenshot2.jpg)
+![bluetooth screenshot2](../images/bluetooth_screenshot2.jpg)
 
 # Equipement
 
@@ -67,11 +67,11 @@ NIU ist sehr einfach einzuschließen. Setzen Sie Jeedom in Inclusion und drücke
 
 Sobald die NIU erstellt wurde, erhalten Sie diese :
 
-![blea screenshot3](../images/blea_screenshot3.jpg)
+![bluetooth screenshot3](../images/bluetooth_screenshot3.jpg)
 
 Sie haben 4 Bestellungen :
 
-![blea commands niu](../images/blea_commands_niu.jpg)
+![bluetooth commands niu](../images/bluetooth_commands_niu.jpg)
 
 - ButtonId : gibt eine digitale Darstellung der Art der Unterstützung (ideal für Szenarien)
   - 01 : einfache Presse
@@ -112,10 +112,10 @@ Sie müssen zur Plugin-Seite (Plugins> Home Automation Protocol) gehen und auf "
 
 Wenn kein Fehler aufgetreten ist und Ihre Antenne im Plugin gut erstellt wurde, müssen Sie jetzt die erforderlichen Abhängigkeiten installieren und den Dämon auf der Antenne starten, der die Verbindung zwischen den Bluetooth-Geräten unter herstellt Reichweite der Antenne und des Plugins (und damit Jeedom).
 
-1) Klicken Sie auf die Schaltfläche "Dateien senden". Es kann einige Zeit dauern. Bitte warten Sie. Ein grünes Banner, das den Erfolg bestätigt, wird rot angezeigt, wenn ein Problem aufgetreten ist. Überprüfen Sie in diesem Fall das "Blea" -Protokoll und die Konfiguration (IP, Benutzer, Kennwort), ...)
-2) Klicken Sie anschließend auf die Schaltfläche "Abhängigkeiten starten"". Auch hier kann es einige Zeit dauern, bitte warten Sie. Ein grünes Banner bestätigt den Erfolg oder ein rotes, wenn nicht (überprüfen Sie das Blea-Protokoll)
+1) Klicken Sie auf die Schaltfläche "Dateien senden". Es kann einige Zeit dauern. Bitte warten Sie. Ein grünes Banner, das den Erfolg bestätigt, wird rot angezeigt, wenn ein Problem aufgetreten ist. Überprüfen Sie in diesem Fall das "bluetooth" -Protokoll und die Konfiguration (IP, Benutzer, Kennwort), ...)
+2) Klicken Sie anschließend auf die Schaltfläche "Abhängigkeiten starten"". Auch hier kann es einige Zeit dauern, bitte warten Sie. Ein grünes Banner bestätigt den Erfolg oder ein rotes, wenn nicht (überprüfen Sie das bluetooth-Protokoll)
 3) Optional können Sie das Abhängigkeitsinstallationsprotokoll manuell wiederherstellen, indem Sie auf "Abhängigkeitsprotokoll" klicken und das Protokoll überprüfen. Eine bestimmte Protokolldatei ist in der Plugin-Konfiguration verfügbar.
-4) Wenn alles gut geht, können Sie auf "Daemon starten" klicken. Nach maximal einer Minute sollte das Datum der letzten Kommunikation aktualisiert werden. Dies bedeutet, dass der Daemon korrekt mit dem BLEA-Plugin kommuniziert.
+4) Wenn alles gut geht, können Sie auf "Daemon starten" klicken. Nach maximal einer Minute sollte das Datum der letzten Kommunikation aktualisiert werden. Dies bedeutet, dass der Daemon korrekt mit dem bluetooth-Plugin kommuniziert.
 5) Letzter optionaler, aber empfohlener Schritt: Aktivieren Sie die automatische Verwaltung des Dämons, indem Sie auf die entsprechende Schaltfläche klicken. Dies führt dazu, dass das Plugin bei einem Verbindungsverlust automatisch versucht, den Remote-Daemon neu zu starten (nützlich, wenn Ihr Remote-Pi vorübergehend vom Stromnetz getrennt oder nach Aktualisierungen neu gestartet wurde).
 
 
@@ -123,4 +123,4 @@ Wenn kein Fehler aufgetreten ist und Ihre Antenne im Plugin gut erstellt wurde, 
 
 Einige Geräte wie das lywsd03 müssen mindestens einmal zu mihome hinzugefügt werden, bevor sie aktiv sind
 
-Sie können finden [hier](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=blea) die Liste der kompatiblen Geräte
+Sie können finden [hier](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=bluetooth) die Liste der kompatiblen Geräte

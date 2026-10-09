@@ -182,7 +182,7 @@ while ($i < 65) {
 	
 	$('.biblioNumber').on('click', function () {
     $('#md_modal2').dialog({title: "{{Votre Collection}}"});
-    $('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.dotti.all').dialog('open');
+    $('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.dotti.all').dialog('open');
 });
 
 	function autoLoadJson(){
@@ -237,7 +237,7 @@ while ($i < 65) {
 						$('.eventDisplay').showAlert({message:  'Affichage sur le Dotti en cours ...',level: 'warning'});
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 							data: {
 								action: "saveImage",
 								id: id,
@@ -291,7 +291,7 @@ while ($i < 65) {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 							data: {
 								action: "delImage",
 								name: $('.memoryload').val()
@@ -417,7 +417,7 @@ while ($i < 65) {
 		}
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 			data: {
 				action: "sendPixelArray",
 				array: _array,
@@ -450,7 +450,7 @@ while ($i < 65) {
 	function loadMemoryList() {
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 			data: {
 				action: "loadMemoryList"
 			},
@@ -478,7 +478,7 @@ while ($i < 65) {
 	function loadImage(){
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 			data: {
 				action: "loadImage",
 				name: $('.memoryload').val()
@@ -509,7 +509,7 @@ while ($i < 65) {
 		$('.imageDotti').val('');
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/dotti/ajax/dotti.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/dotti/ajax/dotti.ajax.php",
 			data: {
 				action: "getImageCode",
 				name: $('.memoryload').val()

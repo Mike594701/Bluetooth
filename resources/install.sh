@@ -1,15 +1,15 @@
 #!/bin/bash
 
-touch /tmp/dependancy_blea_in_progress
-echo 0 > /tmp/dependancy_blea_in_progress
+touch /tmp/dependancy_bluetooth_in_progress
+echo 0 > /tmp/dependancy_bluetooth_in_progress
 
 echo "********************************************************"
-echo "*         Installation des dépendances BLEA           *"
+echo "*         Installation des dépendances bluetooth           *"
 echo "********************************************************"
 
 sudo apt-get update
 
-echo 20 > /tmp/dependancy_blea_in_progress
+echo 20 > /tmp/dependancy_bluetooth_in_progress
 
 sudo apt-get install -y \
 bluetooth \
@@ -28,7 +28,7 @@ libffi-dev \
 libssl-dev \
 libglib2.0-dev
 
-echo 50 > /tmp/dependancy_blea_in_progress
+echo 50 > /tmp/dependancy_bluetooth_in_progress
 
 # Debian 12 (PEP668)
 sudo pip3 install --break-system-packages pyudev
@@ -37,7 +37,7 @@ sudo pip3 install --break-system-packages requests
 sudo pip3 install --break-system-packages cryptography
 sudo pip3 install --break-system-packages pycryptodomex
 
-echo 70 > /tmp/dependancy_blea_in_progress
+echo 70 > /tmp/dependancy_bluetooth_in_progress
 
 cd /tmp
 
@@ -50,7 +50,7 @@ cd bluepy
 sudo python3 setup.py build
 sudo python3 setup.py install
 
-echo 90 > /tmp/dependancy_blea_in_progress
+echo 90 > /tmp/dependancy_bluetooth_in_progress
 
 sudo systemctl restart bluetooth
 
@@ -60,9 +60,9 @@ sudo hciconfig hci2 up >/dev/null 2>&1
 
 sudo rm -rf /tmp/bluepy
 
-echo 100 > /tmp/dependancy_blea_in_progress
+echo 100 > /tmp/dependancy_bluetooth_in_progress
 
 echo "Everything is successfully installed!"
 
-rm -f /tmp/dependancy_blea_in_progress
+rm -f /tmp/dependancy_bluetooth_in_progress
 ``

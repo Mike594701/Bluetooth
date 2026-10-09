@@ -18,7 +18,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
-$eqLogics = blea::byType('blea');
+$eqLogics = bluetooth::byType('bluetooth');
 ?>
 
 <table class="table table-condensed tablesorter" id="table_healthopenenocean">
@@ -46,11 +46,11 @@ foreach ($eqLogics as $eqLogic) {
 	$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 	$alternateImg = $eqLogic->getConfiguration('iconModel');
 	if (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $alternateImg . '.jpg')) {
-		$img = '<img class="lazy" src="plugins/blea/core/config/devices/' . $alternateImg . '.jpg" height="55" width="55" style="' . $opacity . '"/>';
+		$img = '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $alternateImg . '.jpg" height="55" width="55" style="' . $opacity . '"/>';
 	} elseif (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg')) {
-		$img = '<img class="lazy" src="plugins/blea/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg" height="55" width="55" style="' . $opacity . '"/>';
+		$img = '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg" height="55" width="55" style="' . $opacity . '"/>';
 	} else {
-		$img = '<img class="lazy" src="plugins/blea/doc/images/blea_icon.png" height="55" width="55" style="' . $opacity . '"/>';
+		$img = '<img class="lazy" src="plugins/bluetooth/doc/images/bluetooth_icon.png" height="55" width="55" style="' . $opacity . '"/>';
 	}
 	echo '<tr><td>' . $img . '</td><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td>';
 	echo '<td><span class="label label-info" style="font-size : 1em; cursor : default;">' . $eqLogic->getId() . '</span></td>';
@@ -73,7 +73,7 @@ foreach ($eqLogics as $eqLogic) {
 	}
 	echo '<td>' . $battery_status . '</td>';
 	$rssi ='';
-	$remotes = blea_remote::all();
+	$remotes = bluetooth_remote::all();
 	foreach ($remotes as $remote){
 		$name = $remote->getRemoteName();
 		$rssicmd = $eqLogic->getCmd('info', 'rssi' . $name);
@@ -121,7 +121,7 @@ foreach ($eqLogics as $eqLogic) {
 	$antenna = $eqLogic->getConfiguration('antenna','local');
 	$antennareceive = $eqLogic->getConfiguration('antennareceive','local');
 	if ($antenna != 'local' && $antenna != 'all'){
-		$remote = blea_remote::byId($antenna);
+		$remote = bluetooth_remote::byId($antenna);
 		if (is_object($remote)){
 			$antenna = $remote->getRemoteName();
 		} else {
@@ -132,7 +132,7 @@ foreach ($eqLogics as $eqLogic) {
 		$antenna = 'Tous';
 	}
 	if ($antennareceive != 'local' && $antennareceive != 'all'){
-		$remote = blea_remote::byId($antennareceive);
+		$remote = bluetooth_remote::byId($antennareceive);
 		if (is_object($remote)){
 			$antennareceive = $remote->getRemoteName();
 		} else {

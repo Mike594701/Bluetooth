@@ -24,7 +24,7 @@ if (init('id') == '') {
 sendVarToJS('id', init('id'));
 ?>
 
-<div class="row" style="height:100%; width: 100%;">
+<div class="row" style="height:100%; width: 100%">
 	<div class="col-lg-2">
 		<div class="form-group">
 			<span style="margin-right:15px;"><label class="fas fa-circle pixelCircle" style="color : #000000;font-size:2em; margin-top:10px;margin-left:15px; cursor: pointer;"><input class="pixelcolor" type="color" value="#000000" style="width:0;height:0;visibility:hidden"></label>{{Couleur}}</span>
@@ -55,14 +55,14 @@ sendVarToJS('id', init('id'));
 		<center>
 			<?php
 $i = 1;
-while ($i < 257) {
+while ($i < 122) {
 	$j = 1;
-	while ($j < 17) {
+	while ($j < 12) {
 		$notfirstline = ' pixelFirstLine';
-		if ($i >= 17){
+		if ($i >= 12){
 			$notfirstline = ' pixelNotFirstLine';
 		}
-		echo '<label class="fas fa-square pixel' . $notfirstline .'" data-pixel="' . $i . '" style="color : #000000;font-size:2.5em; margin-top:-8px;margin-left:-3px; cursor: pointer;border-radius:0"></label>  ';
+		echo '<label class="fas fa-square pixel' . $notfirstline .'" data-pixel="' . $i . '" style="color : #000000;font-size:2em; margin-top:0px;margin-left:6px; cursor: pointer;border-radius:0"></label>  ';
 		$j++;
 		$i++;
 
@@ -82,7 +82,7 @@ while ($i < 257) {
 		</div>
 		<div class="form-group">
 			<div class="input-group">
-				<input class="namedivoompixooScreen form-control" id="texte" type='text'/>
+				<input class="namedivoomtimeboxminiScreen form-control" id="texte" type='text'/>
 				<span class="input-group-btn">
 					<a class="btn btn-success" id="bt_saveImage"><i class="fas fa-save"></i></a>
 				</span>
@@ -97,9 +97,9 @@ while ($i < 257) {
 			</div>
 		</div>
 		<div class="form-group">
-			<textarea class="imagedivoompixoo form-control" style="display:none" rows="20"></textarea><br/>
-			<a class="btn btn-success uploadimagedivoompixoo" id="bt_upload" style="display:none"><i class="fas fa-check"></i></a>
-			<a class="btn btn-danger closeimagedivoompixoo" id="bt_close" style="display:none"><i class="fas fa-times"></i></a>
+			<textarea class="imagedivoomtimeboxmini form-control" style="display:none" rows="20"></textarea><br/>
+			<a class="btn btn-success uploadimagedivoomtimeboxmini" id="bt_upload" style="display:none"><i class="fas fa-check"></i></a>
+			<a class="btn btn-danger closeimagedivoomtimeboxmini" id="bt_close" style="display:none"><i class="fas fa-times"></i></a>
 		</div>
 	</div>
 </div>
@@ -171,20 +171,20 @@ while ($i < 257) {
 		}
 	});
 	$('#bt_displayExport').on('click', function () {
-		$('.imagedivoompixoo').show();
-		$('.closeimagedivoompixoo').show();
-		$('.uploadimagedivoompixoo').hide();
+		$('.imagedivoomtimeboxmini').show();
+		$('.closeimagedivoomtimeboxmini').show();
+		$('.uploadimagedivoomtimeboxmini').hide();
 		getImageCode();
 	});
 
 	$('.biblioNumber').on('click', function () {
     $('#md_modal2').dialog({title: "{{Votre Collection}}"});
-    $('#md_modal2').load('index.php?v=d&plugin=blea&modal=blea.divoompixoo.all&id='+id).dialog('open');
+    $('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.divoomtimeboxmini.all').dialog('open');
 });
 
 	function autoLoadJson(){
 		try {
-			data = json_decode($('.imagedivoompixoo').val());
+			data = json_decode($('.imagedivoomtimeboxmini').val());
 			for(var pixelId in data){
 				$('[data-pixel="'+ pixelId +'"]').css('color', data[pixelId]);
 			}
@@ -192,20 +192,20 @@ while ($i < 257) {
 		}
 	}
 
-	$('.imagedivoompixoo').on('change',function(){
+	$('.imagedivoomtimeboxmini').on('change',function(){
 		autoLoadJson();
 	});
 
 	$('#bt_Import').on('click', function () {
-		$('.imagedivoompixoo').show();
-		$('.closeimagedivoompixoo').show();
-		$('.uploadimagedivoompixoo').show();
-		$('.imagedivoompixoo').val('');
+		$('.imagedivoomtimeboxmini').show();
+		$('.closeimagedivoomtimeboxmini').show();
+		$('.uploadimagedivoomtimeboxmini').show();
+		$('.imagedivoomtimeboxmini').val('');
 	});
 	$('#bt_close').on('click', function () {
-		$('.imagedivoompixoo').hide();
-		$('.closeimagedivoompixoo').hide();
-		$('.uploadimagedivoompixoo').hide();
+		$('.imagedivoomtimeboxmini').hide();
+		$('.closeimagedivoomtimeboxmini').hide();
+		$('.uploadimagedivoomtimeboxmini').hide();
 	});
 
 	$('#bt_saveImage').on('click', function () {
@@ -213,14 +213,14 @@ while ($i < 257) {
 		$('.pixel').each(function( index ) {
 			array[$(this).attr('data-pixel')] = hexc($(this).css('color'));
 		});
-		if ($('.namedivoompixooScreen').val() == ''){
+		if ($('.namedivoomtimeboxminiScreen').val() == ''){
 			$('.eventDisplay').showAlert({message:  'Vous devez spécifier un nom pour sauver une image',level: 'danger'});
 			setTimeout(function() { deleteAlert()}, 2000);
 			return;
 		}
 		bootbox.dialog({
 			title: 'Etes-vous sur ?',
-			message: 'Vous allez sauver l\'image avec le nom "' +$('.namedivoompixooScreen').val() +'" ! Voulez-vous continuer ?',
+			message: 'Vous allez sauver l\'image avec le nom "' +$('.namedivoomtimeboxminiScreen').val() +'" ! Voulez-vous continuer ?',
 			buttons: {
 				"{{Annuler}}": {
 					className: "btn-danger",
@@ -231,14 +231,14 @@ while ($i < 257) {
 					label: "{{Continuer}}",
 					className: "btn-success",
 					callback: function () {
-						$('.eventDisplay').showAlert({message:  'Affichage sur le divoompixoo en cours ...',level: 'warning'});
+						$('.eventDisplay').showAlert({message:  'Affichage sur le divoomtimeboxmini en cours ...',level: 'warning'});
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/divoompixoo/ajax/divoompixoo.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 							data: {
 								action: "saveImage",
 								id: id,
-								name: $('.namedivoompixooScreen').val(),
+								name: $('.namedivoomtimeboxminiScreen').val(),
 								data : array
 							},
 							global : false,
@@ -288,7 +288,7 @@ while ($i < 257) {
 					callback: function () {
 						$.ajax({
 							type: "POST",
-							url: "plugins/blea/core/config/devices/divoompixoo/ajax/divoompixoo.ajax.php",
+							url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 							data: {
 								action: "delImage",
 								name: $('.memoryload').val()
@@ -410,11 +410,11 @@ while ($i < 257) {
 
 	function sendPixelArray(_array,_id,_displaymess = true) {
 		if (_displaymess){
-			$('.eventDisplay').showAlert({message:  'Affichage sur le divoompixoo en cours ...' ,level: 'warning'});
+			$('.eventDisplay').showAlert({message:  'Affichage sur le divoomtimeboxmini en cours ...' ,level: 'warning'});
 		}
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/divoompixoo/ajax/divoompixoo.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 			data: {
 				action: "sendPixelArray",
 				array: _array,
@@ -447,7 +447,7 @@ while ($i < 257) {
 	function loadMemoryList() {
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/divoompixoo/ajax/divoompixoo.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 			data: {
 				action: "loadMemoryList"
 			},
@@ -476,7 +476,7 @@ while ($i < 257) {
 	function loadImage(){
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/divoompixoo/ajax/divoompixoo.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 			data: {
 				action: "loadImage",
 				name: $('.memoryload').val()
@@ -497,17 +497,17 @@ while ($i < 257) {
 						$('[data-pixel="'+ pixelId.toString() +'"]').css('color', data.result[pixelId]);
 					}
 				}
-				$('.namedivoompixooScreen').val($('.memoryload').find('option:selected').text());
+				$('.namedivoomtimeboxminiScreen').val($('.memoryload').find('option:selected').text());
 				modifyWithoutSave=false;
 			}
 		});
 	}
 
 	function getImageCode(){
-		$('.imagedivoompixoo').val('');
+		$('.imagedivoomtimeboxmini').val('');
 		$.ajax({
 			type: "POST",
-			url: "plugins/blea/core/config/devices/divoompixoo/ajax/divoompixoo.ajax.php",
+			url: "plugins/bluetooth/core/config/devices/divoomtimeboxmini/ajax/divoomtimeboxmini.ajax.php",
 			data: {
 				action: "getImageCode",
 				name: $('.memoryload').val()
@@ -523,8 +523,8 @@ while ($i < 257) {
 					setTimeout(function() { deleteAlert()}, 2000);
 					return;
 				}
-				$('.imagedivoompixoo').off('change');
-				$('.imagedivoompixoo').val(data.result);
+				$('.imagedivoomtimeboxmini').off('change');
+				$('.imagedivoomtimeboxmini').val(data.result);
 				autoLoadJson();
 				modifyWithoutSave=false;
 			}

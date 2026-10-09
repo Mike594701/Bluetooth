@@ -2,13 +2,13 @@
 if (!isConnect('admin')) {
 	throw new Exception('Error 401 Unauthorized');
 }
-$plugin = plugin::byId('blea');
+$plugin = plugin::byId('bluetooth');
 sendVarToJS('eqType', $plugin->getId());
 $eqLogics = eqLogic::byType($plugin->getId());
 function sortByOption($a, $b) {
 	return strcmp($a['name'], $b['name']);
 }
-if (config::byKey('include_mode', 'blea', 0) == 1) {
+if (config::byKey('include_mode', 'bluetooth', 0) == 1) {
 	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode scan. Recliquez sur le bouton scan pour sortir de ce mode (sinon le mode restera actif une minute)}}</div>';
 } else {
 	echo '<div id="div_inclusionAlert"></div>';
@@ -19,7 +19,7 @@ if (config::byKey('include_mode', 'blea', 0) == 1) {
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="eqLogicThumbnailContainer">
     <?php
-if (config::byKey('include_mode', 'blea', 0) == 1) {
+if (config::byKey('include_mode', 'bluetooth', 0) == 1) {
 	echo '<div class="cursor changeIncludeState include card logoPrimary" data-mode="1" data-state="0" >';
 	echo '<i class="fas fa-spinner fa-pulse"></i>';
 	echo '<br/>';
@@ -38,23 +38,23 @@ if (config::byKey('include_mode', 'blea', 0) == 1) {
 	<br/>
     <span>{{Configuration}}</span>
   </div>
-  <div class="cursor logoSecondary" id="bt_healthblea">
+  <div class="cursor logoSecondary" id="bt_healthbluetooth">
       <i class="fas fa-medkit"></i>
 	<br/>
     <span>{{Santé}}</span>
   </div>
-  <div class="cursor logoSecondary" id="bt_graphblea">
+  <div class="cursor logoSecondary" id="bt_graphbluetooth">
 	<i class="fas fa-asterisk"></i>
 	<br/>
 	<span>{{Réseau}}</span>
 	</div>
-  <div class="cursor logoSecondary" id="bt_remoteblea">
+  <div class="cursor logoSecondary" id="bt_remotebluetooth">
 	<i class="fab fa-bluetooth"></i>
 	<br/>
 	<span>{{Antennes}}</span>
 	</div>
 </div>
-<legend><i class="fas fa-table"></i>  {{Mes devices Blea Connus}}</legend>
+<legend><i class="fas fa-table"></i>  {{Mes devices bluetooth Connus}}</legend>
 <div class="input-group" style="margin:5px;">
 		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
 		<div class="input-group-btn">
@@ -69,9 +69,9 @@ foreach ($eqLogics as $eqLogic) {
 		echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
 		$alternateImg = $eqLogic->getConfiguration('iconModel');
 		if (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $alternateImg . '.jpg')) {
-			echo '<img class="lazy" src="plugins/blea/core/config/devices/' . $alternateImg . '.jpg"/>';
+			echo '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $alternateImg . '.jpg"/>';
 		} elseif (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg')) {
-			echo '<img class="lazy" src="plugins/blea/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg"/>';
+			echo '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg"/>';
 		} else {
 			echo '<img src="' . $plugin->getPathImgIcon() . '"/>';
 		}
@@ -82,7 +82,7 @@ foreach ($eqLogics as $eqLogic) {
 }
 ?>
 </div>
-<legend><i class="fas fa-table"></i>  {{Mes devices Blea Inconnus}} <i class="deleteUnknown cursor fas fa-trash"></i></legend>
+<legend><i class="fas fa-table"></i>  {{Mes devices bluetooth Inconnus}} <i class="deleteUnknown cursor fas fa-trash"></i></legend>
 <div class="eqLogicThumbnailContainer">
   <?php
 foreach ($eqLogics as $eqLogic) {
@@ -91,9 +91,9 @@ foreach ($eqLogics as $eqLogic) {
 		echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
 		$alternateImg = $eqLogic->getConfiguration('iconModel');
 		if (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $alternateImg . '.jpg')) {
-			echo '<img class="lazy" src="plugins/blea/core/config/devices/' . $alternateImg . '.jpg"/>';
+			echo '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $alternateImg . '.jpg"/>';
 		} elseif (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg')) {
-			echo '<img class="lazy" src="plugins/blea/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg"/>';
+			echo '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg"/>';
 		} else {
 			echo '<img src="' . $plugin->getPathImgIcon() . '"/>';
 		}
@@ -128,7 +128,7 @@ foreach ($eqLogics as $eqLogic) {
                                     <label class="col-sm-3 control-label">{{Nom du device}}</label>
                                     <div class="col-sm-7">
                                         <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                                        <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="Nom de l'équipement BLEA"/>
+                                        <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="Nom de l'équipement bluetooth"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -190,7 +190,7 @@ foreach ($eqLogics as $eqLogic) {
                                             <option value="">Aucun</option>
                                             <?php
                                             $groups = array();
-                                            foreach (blea::devicesParameters() as $key => $info) {
+                                            foreach (bluetooth::devicesParameters() as $key => $info) {
                                                 if (isset($info['groupe'])) {
                                                     $info['key'] = $key;
                                                     if (!isset($groups[$info['groupe']])) {
@@ -245,16 +245,16 @@ foreach ($eqLogics as $eqLogic) {
                                     <div class="col-sm-4">
                                         <select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="antennareceive">
                                             <?php
-                                            if (config::byKey('noLocal', 'blea', 0) == 0){
+                                            if (config::byKey('noLocal', 'bluetooth', 0) == 0){
                                                 echo '<option value="local">{{Local}}</option>';
                                             }
                                             try{
-                                                $hasblea = plugin::byId('blea');
+                                                $hasbluetooth = plugin::byId('bluetooth');
                                             } catch (Exception $e) {
                                                 
                                             }
-                                            if ($hasblea != '' && $hasblea->isActive()){
-                                                $remotes = blea_remote::all();
+                                            if ($hasbluetooth != '' && $hasbluetooth->isActive()){
+                                                $remotes = bluetooth_remote::all();
                                                 foreach ($remotes as $remote) {
                                                     echo '<option value="' . $remote->getId() . '">{{Remote : ' . $remote->getRemoteName() .'}}</option>';
                                                 }
@@ -269,16 +269,16 @@ foreach ($eqLogics as $eqLogic) {
                                     <div class="col-sm-4">
                                         <select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="antenna">
                                             <?php
-                                            if (config::byKey('noLocal', 'blea', 0) == 0){
+                                            if (config::byKey('noLocal', 'bluetooth', 0) == 0){
                                                 echo '<option value="local">{{Local}}</option>';
                                             }
                                             try{
-                                                $hasblea = plugin::byId('blea');
+                                                $hasbluetooth = plugin::byId('bluetooth');
                                             } catch (Exception $e) {
                                                 
                                             }
-                                            if ($hasblea != '' && $hasblea->isActive()){
-                                                $remotes = blea_remote::all();
+                                            if ($hasbluetooth != '' && $hasbluetooth->isActive()){
+                                                $remotes = bluetooth_remote::all();
                                                 foreach ($remotes as $remote) {
                                                     echo '<option value="' . $remote->getId() . '">{{Remote : ' . $remote->getRemoteName() .'}}</option>';
                                                 }
@@ -343,6 +343,6 @@ foreach ($eqLogics as $eqLogic) {
     </div>
 </div>
 <?php
-    include_file('desktop', 'blea', 'js', 'blea');
+    include_file('desktop', 'bluetooth', 'js', 'bluetooth');
     include_file('core', 'plugin.template', 'js');
 ?>

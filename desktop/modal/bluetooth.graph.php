@@ -20,10 +20,10 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$remotes = blea_remote::all();
+$remotes = bluetooth_remote::all();
 $eqLogics = array();
 $antennas = array();
-$remotes = blea_remote::all();
+$remotes = bluetooth_remote::all();
 $availremotename=array();
 foreach ($remotes as $remote){
 	$info = array();
@@ -36,13 +36,13 @@ foreach ($remotes as $remote){
 	$availremotename[]=$name;
 }
 $availremotename[]='local';
-if (config::byKey('noLocal', 'blea', 0) == 0){
+if (config::byKey('noLocal', 'bluetooth', 0) == 0){
 	$infolocal=array();
-	$infolocal['x'] = config::byKey('positionx', 'blea', 999);
-	$infolocal['y'] = config::byKey('positiony', 'blea', 999);
+	$infolocal['x'] = config::byKey('positionx', 'bluetooth', 999);
+	$infolocal['y'] = config::byKey('positiony', 'bluetooth', 999);
 	$antennas['local']=$infolocal;
 }
-foreach (eqLogic::byType('blea') as $eqLogic){
+foreach (eqLogic::byType('bluetooth') as $eqLogic){
 	$info =array();
 	$object = $eqLogic->getObject();
 	if (is_null($object)) {
@@ -68,7 +68,7 @@ foreach (eqLogic::byType('blea') as $eqLogic){
 sendVarToJS('eqLogics', $eqLogics);
 sendVarToJS('antennas', $antennas);
 ?>
-<script type="text/javascript" src="plugins/blea/3rdparty/vivagraph/vivagraph.min.js"></script>
+<script type="text/javascript" src="plugins/bluetooth/3rdparty/vivagraph/vivagraph.min.js"></script>
 <style>
     #graph_network {
         height: 100%;
@@ -81,9 +81,9 @@ sendVarToJS('antennas', $antennas);
         width: 100%;
     }
 </style>
-<div id="graph_network" class="tab-pane graphBlea">
-<a class="btn btn-success bleaRemoteAction" data-action="saveanttenna"><i class="fas fa-hdd"></i> {{Position Antennes}}</a>
-<a class="btn btn-success bleaRemoteAction" data-action="refresh"><i class="fas fa-sync"></i></a>
+<div id="graph_network" class="tab-pane graphbluetooth">
+<a class="btn btn-success bluetoothRemoteAction" data-action="saveanttenna"><i class="fas fa-hdd"></i> {{Position Antennes}}</a>
+<a class="btn btn-success bluetoothRemoteAction" data-action="refresh"><i class="fas fa-sync"></i></a>
 <i class="fas fa-question-circle" style="cursor:pointer;font-size:2em" title="{{Représentation relative de la puissance des liens sur les antennes. Vous pouvez déplacer les antennes et sauver leur position pour les retrouver à la même place. Concernant les équipements, ceux-ci prennent une position d'équilibre (vous pouvez aussi les déplacer mais ils s'équilibreront). Si les antennes sont toutes d'un coté de l'équipement, il peut y avoir plusieurs positions d'équilibres de part et d'autres. Cependant dans le cas d'un équipement avec des antennes autour de lui (le plus en triangle possible), il y aura une seule position d'équilibre qui sera proche de la réelle. Certains modules comme les NIU émettent que lors de l'appui, donc au bout d'un moment il n'y a plus de signal, à ce moment là les modules sont rattachés virtuellement à l'antenne local via des pointillés}}"></i>
 </div>
 
@@ -101,13 +101,13 @@ function load_graph(){
 		if (antennas[antenna]['dead']) {
 			icon = icon + '-ko';
 		}
-		graph.addNode(antenna,{url : 'plugins/blea/3rdparty/'+icon+'.png',antenna :1,x:antennas[antenna]['x'],y:antennas[antenna]['y']});
+		graph.addNode(antenna,{url : 'plugins/bluetooth/3rdparty/'+icon+'.png',antenna :1,x:antennas[antenna]['x'],y:antennas[antenna]['y']});
 		topin = graph.getNode(antenna);
 		topin.isPinned = true;
 	}
 	for (eqlogic in eqLogics) {
 		haslink = 0;
-		graph.addNode(eqLogics[eqlogic]['name'],{url : 'plugins/blea/core/config/devices/'+eqLogics[eqlogic]['icon']+'.jpg',antenna :0});
+		graph.addNode(eqLogics[eqlogic]['name'],{url : 'plugins/bluetooth/core/config/devices/'+eqLogics[eqlogic]['icon']+'.jpg',antenna :0});
 		for (linkedantenna in eqLogics[eqlogic]['rssi']){
 			signal = eqLogics[eqlogic]['rssi'][linkedantenna];
 			orisignal = signal;
@@ -231,12 +231,12 @@ function load_graph(){
 		container: document.getElementById('graph_network')
     });
 renderer.run();
-$('.bleaRemoteAction[data-action=refresh]').on('click',function(){
+$('.bluetoothRemoteAction[data-action=refresh]').on('click',function(){
 	$('#md_modal').dialog('close');
-	$('#md_modal').dialog({title: "{{Réseau BLEA}}"});
-	$('#md_modal').load('index.php?v=d&plugin=blea&modal=blea.graph&id=blea').dialog('open');
+	$('#md_modal').dialog({title: "{{Réseau bluetooth}}"});
+	$('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.graph&id=bluetooth').dialog('open');
 });
-$('.bleaRemoteAction[data-action=saveanttenna]').on('click',function(){
+$('.bluetoothRemoteAction[data-action=saveanttenna]').on('click',function(){
 	var antenna= {}
 	graph.forEachNode(function (node) {
 	if (node.data.antenna == 1){
@@ -247,7 +247,7 @@ $('.bleaRemoteAction[data-action=saveanttenna]').on('click',function(){
 
 $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // méthode de transmission des données au fichier php
-            url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+            url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
             data: {
                 action: "saveAntennaPosition",
 				antennas: json_encode(antenna)
@@ -263,8 +263,8 @@ $.ajax({// fonction permettant de faire de l'ajax
         }
 		$('#div_alert').showAlert({message: 'Positions des antennes sauvées avec succès', level: 'success'});
 		$('#md_modal').dialog('close');
-		$('#md_modal').dialog({title: "{{Réseau BLEA}}"});
-		$('#md_modal').load('index.php?v=d&plugin=blea&modal=blea.graph&id=blea').dialog('open');
+		$('#md_modal').dialog({title: "{{Réseau bluetooth}}"});
+		$('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.graph&id=bluetooth').dialog('open');
         }
     });
 });

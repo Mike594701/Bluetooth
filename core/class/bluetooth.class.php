@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-class blea extends eqLogic {
+class bluetooth extends eqLogic {
 	/*     * ***********************Methode static*************************** */
 	public static $_widgetPossibility = array('custom' => true);
 	public static $_version = '2.9';
@@ -31,26 +31,26 @@ class blea extends eqLogic {
 	public static function createFromDef($_def) {
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
-			'page' => 'blea',
+			'page' => 'bluetooth',
 			'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
 		));
 		if (!isset($_def['id']) || !isset($_def['type'])) {
-			log::add('blea', 'error', 'Information manquante pour ajouter l\'équipement : ' . print_r($_def, true));
+			log::add('bluetooth', 'error', 'Information manquante pour ajouter l\'équipement : ' . print_r($_def, true));
 			event::add('jeedom::alert', array(
 				'level' => 'danger',
-				'page' => 'blea',
+				'page' => 'bluetooth',
 				'message' => __('Information manquante pour ajouter l\'équipement. Inclusion impossible', __FILE__),
 			));
 			return false;
 		}
 		$device = self::devicesParameters($_def['type']);
-		$blea = blea::byLogicalId($_def['id'], 'blea');
-		if (!is_object($blea)) {
-			$eqLogic = new blea();
+		$bluetooth = bluetooth::byLogicalId($_def['id'], 'bluetooth');
+		if (!is_object($bluetooth)) {
+			$eqLogic = new bluetooth();
 			$eqLogic->setName('BLE ' . $_def['name'] . ' ' . $_def['id']);
 		}
 		$eqLogic->setLogicalId($_def['id']);
-		$eqLogic->setEqType_name('blea');
+		$eqLogic->setEqType_name('bluetooth');
 		$eqLogic->setIsEnable(1);
 		$eqLogic->setIsVisible(1);
 		$eqLogic->setConfiguration('device', $_def['type']);
@@ -73,15 +73,15 @@ class blea extends eqLogic {
 
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
-			'page' => 'blea',
+			'page' => 'bluetooth',
 			'message' => __('Module inclu avec succès ' .$_def['name'].' ' . $_def['id'], __FILE__),
 		));
 		return $eqLogic;
 	}
 
 	public static function cron() {
-		$remotes = blea_remote::getCacheRemotes('allremotes',array());
-		$allEqlogic = eqLogic::byType('blea');
+		$remotes = bluetooth_remote::getCacheRemotes('allremotes',array());
+		$allEqlogic = eqLogic::byType('bluetooth');
 		foreach ($remotes as $remote) {
 			$last = $remote->getCache('lastupdate','0');
 			if (($last == '0' or time() - strtotime($last)>65)) {
@@ -95,8 +95,8 @@ class blea extends eqLogic {
 					$eqLogic->computePresence();
 				}
 				if ($auto == 1){
-					log::add('blea','info','Restarting daemon on remote ' . $remote->getRemoteName());
-					blea::launchremote($remote->getId());
+					log::add('bluetooth','info','Restarting daemon on remote ' . $remote->getRemoteName());
+					bluetooth::launchremote($remote->getId());
 				}
 			}
 		}
@@ -114,13 +114,13 @@ class blea extends eqLogic {
 	}
 
 	public static function cron15() {
-		$remotes = blea_remote::getCacheRemotes('allremotes',array());
+		$remotes = bluetooth_remote::getCacheRemotes('allremotes',array());
 		$availremote= array();
 		foreach ($remotes as $remote) {
 			self::getRemoteLog($remote->getId());
 			$availremote[] = $remote->getRemoteName();
 		}
-		foreach (eqLogic::byType('blea') as $eqLogic){
+		foreach (eqLogic::byType('bluetooth') as $eqLogic){
 			foreach ($eqLogic->getCmd('info') as $cmd) {
 				$logicalId = $cmd->getLogicalId();
 				if (substr($logicalId,0,4) == 'rssi'){
@@ -128,7 +128,7 @@ class blea extends eqLogic {
 					if ($remotename != 'local' && $remotename != 'local' && !(in_array($remotename,$availremote))){
 						$cmd->remove();
 					} else if ($remotename == 'local') {
-						if (config::byKey('noLocal', 'blea', 0) == 1){
+						if (config::byKey('noLocal', 'bluetooth', 0) == 1){
 							$cmd->remove();
 						}
 					}
@@ -137,7 +137,7 @@ class blea extends eqLogic {
 					if ($remotename != 'local' && !(in_array($remotename,$availremote))){
 						$cmd->remove();
 					} else if ($remotename == 'local') {
-						if (config::byKey('noLocal', 'blea', 0) == 1){
+						if (config::byKey('noLocal', 'bluetooth', 0) == 1){
 							$cmd->remove();
 						}
 					}
@@ -149,23 +149,23 @@ class blea extends eqLogic {
 	public static function childrenCronDispatcher($_params) {
 		$child = $_params['childclass'];
 		require_once dirname(__FILE__) . '/../config/devices/'.$child.'/class/'.$child.'.class.php';
-		$class= $child.'blea';
+		$class= $child.'bluetooth';
 		$childrenclass = new $class();
 		$childrenclass->cronDispatcher($_params);
 	}
 
 	public static function getMobileHealth() {
 		$health='';
-		$eqLogics = blea::byType('blea');
+		$eqLogics = bluetooth::byType('bluetooth');
 		foreach ($eqLogics as $eqLogic) {
 			$opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 			$alternateImg = $eqLogic->getConfiguration('iconModel');
 			if (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $alternateImg . '.jpg')) {
-				$img = '<img class="lazy" src="plugins/blea/core/config/devices/' . $alternateImg . '.jpg" height="30" width="30" style="' . $opacity . '"/>';
+				$img = '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $alternateImg . '.jpg" height="30" width="30" style="' . $opacity . '"/>';
 			} elseif (file_exists(dirname(__FILE__) . '/../../core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg')) {
-				$img = '<img class="lazy" src="plugins/blea/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg" height="30" width="30" style="' . $opacity . '"/>';
+				$img = '<img class="lazy" src="plugins/bluetooth/core/config/devices/' . $eqLogic->getConfiguration('device') . '.jpg" height="30" width="30" style="' . $opacity . '"/>';
 			} else {
-				$img = '<img class="lazy" src="plugins/blea/doc/images/blea_icon.png" height="30" width="30" style="' . $opacity . '"/>';
+				$img = '<img class="lazy" src="plugins/bluetooth/doc/images/bluetooth_icon.png" height="30" width="30" style="' . $opacity . '"/>';
 			}
 			$health .= '<tr><td>' . $img . '</td><td><span class="label label-success" style="font-size : 0.8em;">'. $eqLogic->getHumanName(true) . '</span></td>';
 			$battery_status = '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
@@ -196,7 +196,7 @@ class blea extends eqLogic {
 	}
 
 	public static function getMobileGraph() {
-		$remotes = blea_remote::getCacheRemotes('allremotes',array());
+		$remotes = bluetooth_remote::getCacheRemotes('allremotes',array());
 		$eqLogics = array();
 		$antennas = array();
 		foreach ($remotes as $remote){
@@ -210,13 +210,13 @@ class blea extends eqLogic {
 			$availremotename[]=$name;
 		}
 		$availremotename[]='local';
-		if (config::byKey('noLocal', 'blea', 0) == 0){
+		if (config::byKey('noLocal', 'bluetooth', 0) == 0){
 			$infolocal=array();
-			$infolocal['x'] = config::byKey('positionx', 'blea', 999);
-			$infolocal['y'] = config::byKey('positiony', 'blea', 999);
+			$infolocal['x'] = config::byKey('positionx', 'bluetooth', 999);
+			$infolocal['y'] = config::byKey('positiony', 'bluetooth', 999);
 			$antennas['local']=$infolocal;
 		}
-		foreach (eqLogic::byType('blea') as $eqLogic){
+		foreach (eqLogic::byType('bluetooth') as $eqLogic){
 			$info =array();
 			$object = $eqLogic->getObject();
 			if (is_null($object)) {
@@ -244,7 +244,7 @@ class blea extends eqLogic {
 
 	public static function health() {
         $return = array();
-		$remotes = blea_remote::getCacheRemotes('allremotes',array());
+		$remotes = bluetooth_remote::getCacheRemotes('allremotes',array());
 		if (count($remotes) !=0){
 			$return[] = array(
 				'test' => __('Nombre d\'antennes', __FILE__),
@@ -276,82 +276,82 @@ class blea extends eqLogic {
     }
 
 	public static function sendRemoteFiles($_remoteId) {
-		blea::stopremote($_remoteId);
-		$remoteObject = blea_remote::byId($_remoteId);
+		bluetooth::stopremote($_remoteId);
+		$remoteObject = bluetooth_remote::byId($_remoteId);
 		$user=$remoteObject->getConfiguration('remoteUser');
 		$script_path = dirname(__FILE__) . '/../../resources/';
-		log::add('blea','info','Compression du dossier local');
-		exec('tar -zcvf /tmp/folder-blea.tar.gz ' . $script_path);
-		log::add('blea','info','Envoie du fichier  /tmp/folder-blea.tar.gz');
+		log::add('bluetooth','info','Compression du dossier local');
+		exec('tar -zcvf /tmp/folder-bluetooth.tar.gz ' . $script_path);
+		log::add('bluetooth','info','Envoie du fichier  /tmp/folder-bluetooth.tar.gz');
 		$result = false;
-		$result = $remoteObject->execCmd(['rm -Rf /home/'.$user.'/blead','mkdir -p /home/'.$user.'/blead']);
-		if ($remoteObject->sendFiles('/tmp/folder-blea.tar.gz','/home/'.$user.'/folder-blea.tar.gz')) {
-			log::add('blea','info',__('Décompression du dossier distant',__FILE__));
-			$result = $remoteObject->execCmd(['tar -zxf /home/'.$user.'/folder-blea.tar.gz -C /home/'.$user.'/blead','rm -f /home/'.$user.'/folder-blea.tar.gz']);
+		$result = $remoteObject->execCmd(['rm -Rf /home/'.$user.'/bluetoothd','mkdir -p /home/'.$user.'/bluetoothd']);
+		if ($remoteObject->sendFiles('/tmp/folder-bluetooth.tar.gz','/home/'.$user.'/folder-bluetooth.tar.gz')) {
+			log::add('bluetooth','info',__('Décompression du dossier distant',__FILE__));
+			$result = $remoteObject->execCmd(['tar -zxf /home/'.$user.'/folder-bluetooth.tar.gz -C /home/'.$user.'/bluetoothd','rm -f /home/'.$user.'/folder-bluetooth.tar.gz']);
 		}
-		log::add('blea','info',__('Suppression du zip local',__FILE__));
-		exec('rm -f /tmp/folder-blea.tar.gz');
-		log::add('blea','info',__('Finie',__FILE__));
+		log::add('bluetooth','info',__('Suppression du zip local',__FILE__));
+		exec('rm -f /tmp/folder-bluetooth.tar.gz');
+		log::add('bluetooth','info',__('Finie',__FILE__));
 		return $result;
 	}
 
 	public static function getRemoteLog($_remoteId,$_dependancy='') {
-		$remoteObject = blea_remote::byId($_remoteId);
+		$remoteObject = bluetooth_remote::byId($_remoteId);
 		$name = $remoteObject->getRemoteName();
-		$local = dirname(__FILE__) . '/../../../../log/blea_'.str_replace(' ','-',$name).$_dependancy;
-		log::add('blea','info','Suppression de la log ' . $local);
+		$local = dirname(__FILE__) . '/../../../../log/bluetooth_'.str_replace(' ','-',$name).$_dependancy;
+		log::add('bluetooth','info','Suppression de la log ' . $local);
 		exec('rm -f '. $local);
-		log::add('blea','info',__('Récupération de la log distante',__FILE__));
-		if ($remoteObject->getFiles($local,'/tmp/blea'.$_dependancy)) {
-			$remoteObject->execCmd(['cat /dev/null > /tmp/blea'.$_dependancy]);
+		log::add('bluetooth','info',__('Récupération de la log distante',__FILE__));
+		if ($remoteObject->getFiles($local,'/tmp/bluetooth'.$_dependancy)) {
+			$remoteObject->execCmd(['cat /dev/null > /tmp/bluetooth'.$_dependancy]);
 			return true;
 		}
 		return false;
 	}
 
 	public static function dependancyRemote($_remoteId) {
-		blea::stopremote($_remoteId);
-		$remoteObject = blea_remote::byId($_remoteId);
+		bluetooth::stopremote($_remoteId);
+		$remoteObject = bluetooth_remote::byId($_remoteId);
 		$user=$remoteObject->getConfiguration('remoteUser');
-		log::add('blea','info',__('Installation des dépendances',__FILE__));
-		return $remoteObject->execCmd(['bash /home/'.$user.'/blead/resources/install_apt.sh  >> ' . '/tmp/blea_dependancy' . ' 2>&1 &']);
+		log::add('bluetooth','info',__('Installation des dépendances',__FILE__));
+		return $remoteObject->execCmd(['bash /home/'.$user.'/bluetoothd/resources/install_apt.sh  >> ' . '/tmp/bluetooth_dependancy' . ' 2>&1 &']);
 	}
 
 	public static function launchremote($_remoteId) {
-		log::add('blea','info',__('Lancement du démon distant',__FILE__));
-		$remoteObject = blea_remote::byId($_remoteId);
+		log::add('bluetooth','info',__('Lancement du démon distant',__FILE__));
+		$remoteObject = bluetooth_remote::byId($_remoteId);
 		$last = $remoteObject->getCache('lastupdate','0');
-		blea::stopremote($_remoteId);
+		bluetooth::stopremote($_remoteId);
 		sleep(5);
 		$user=$remoteObject->getConfiguration('remoteUser');
 		$device=$remoteObject->getConfiguration('remoteDevice');
-		$script_path = '/home/'.$user.'/blead/resources/blead';
-		$cmd = '/usr/bin/python3 ' . $script_path . '/blead.py';
-		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('blea'));
+		$script_path = '/home/'.$user.'/bluetoothd/resources/bluetoothd';
+		$cmd = '/usr/bin/python3 ' . $script_path . '/bluetoothd.py';
+		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('bluetooth'));
 		$cmd .= ' --device ' . $device;
-		$cmd .= ' --socketport ' . config::byKey('socketport', 'blea');
+		$cmd .= ' --socketport ' . config::byKey('socketport', 'bluetooth');
 		$cmd .= ' --sockethost ""';
-		$cmd .= ' --callback ' . network::getNetworkAccess('internal') . '/plugins/blea/core/php/jeeBlea.php';
-		$cmd .= ' --apikey ' . jeedom::getApiKey('blea');
+		$cmd .= ' --callback ' . network::getNetworkAccess('internal') . '/plugins/bluetooth/core/php/jeebluetooth.php';
+		$cmd .= ' --apikey ' . jeedom::getApiKey('bluetooth');
 		$cmd .= ' --daemonname "' . $remoteObject->getRemoteName() . '"';
-		$cmd .= ' --noseeninterval ' . config::byKey('absentnumber', 'blea', 4);
-		$cmd .= ' --scaninterval ' . config::byKey('scaninterval', 'blea', 29);
-		$cmd .= ' --scanmode ' . config::byKey('scanmode', 'blea', 'passive');
-		$cmd .= ' >> ' . '/tmp/blea' . ' 2>&1 &';
-		log::add('blea','info','Lancement du démon distant ' . $cmd);
-		blea_remote::setCacheRemotes('allremotes',blea_remote::all());
-		config::save('include_mode', 0, 'blea');
+		$cmd .= ' --noseeninterval ' . config::byKey('absentnumber', 'bluetooth', 4);
+		$cmd .= ' --scaninterval ' . config::byKey('scaninterval', 'bluetooth', 29);
+		$cmd .= ' --scanmode ' . config::byKey('scanmode', 'bluetooth', 'passive');
+		$cmd .= ' >> ' . '/tmp/bluetooth' . ' 2>&1 &';
+		log::add('bluetooth','info','Lancement du démon distant ' . $cmd);
+		bluetooth_remote::setCacheRemotes('allremotes',bluetooth_remote::all());
+		config::save('include_mode', 0, 'bluetooth');
 		return $remoteObject->execCmd([$cmd]);
 	}
 
 	public static function remotelearn($_remoteId,$_state) {
-		$remoteObject = blea_remote::byId($_remoteId);
+		$remoteObject = bluetooth_remote::byId($_remoteId);
 		$ip = $remoteObject->getConfiguration('remoteIp');
 		if ($_state == '1'){
-			$allowAll = config::byKey('allowAllinclusion', 'blea');
-			$value = array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'learnin', 'allowAll' => $allowAll);
+			$allowAll = config::byKey('allowAllinclusion', 'bluetooth');
+			$value = array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'learnin', 'allowAll' => $allowAll);
 		} else {
-			$value = array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'learnout');
+			$value = array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'learnout');
 		}
 		$value = json_encode($value);
 		$last = $remoteObject->getCache('lastupdate','0');
@@ -359,7 +359,7 @@ class blea extends eqLogic {
 				return;
 		} else {
 			$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-			socket_connect($socket, $ip, config::byKey('socketport', 'blea'));
+			socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
 			socket_write($socket, $value, strlen($value));
 			socket_close($socket);
 		}
@@ -367,21 +367,21 @@ class blea extends eqLogic {
 	}
 
 	public static function stopremote($_remoteId) {
-		log::add('blea','info',__('Arret du démon distant',__FILE__));
-		$remoteObject = blea_remote::byId($_remoteId);
+		log::add('bluetooth','info',__('Arret du démon distant',__FILE__));
+		$remoteObject = bluetooth_remote::byId($_remoteId);
 		$ip = $remoteObject->getConfiguration('remoteIp');
-		$value = array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'stop');
+		$value = array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'stop');
 		$value = json_encode($value);
 		$socket = socket_create(AF_INET, SOCK_STREAM, 0);
 		if ($socket) {
-			if (socket_connect($socket, $ip, config::byKey('socketport', 'blea'))) {
+			if (socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'))) {
 				socket_write($socket, $value, strlen($value));
 				socket_close($socket);
 			}
 		}
 		$remoteObject->execCmd(['fuser -k 55008/tcp >> /dev/null 2>&1 &']);
-		config::save('include_mode', 0, 'blea');
-		event::add('blea::includeState', array(
+		config::save('include_mode', 0, 'bluetooth');
+		event::add('bluetooth::includeState', array(
 		'mode' => 'learn',
 		'state' => 0)
 		);
@@ -418,14 +418,14 @@ class blea extends eqLogic {
 
 	public static function deamon_info() {
 		$return = array();
-		$return['log'] = 'blea';
+		$return['log'] = 'bluetooth';
 		$return['state'] = 'nok';
-		if (config::byKey('noLocal', 'blea', 0) == 1){
+		if (config::byKey('noLocal', 'bluetooth', 0) == 1){
 			$return['state'] = 'ok';
 			$return['launchable'] = 'ok';
 			return $return;
 		}
-		$pid_file = jeedom::getTmpFolder('blea') . '/deamon.pid';
+		$pid_file = jeedom::getTmpFolder('bluetooth') . '/deamon.pid';
 		if (file_exists($pid_file)) {
 			if (@posix_getsid(trim(file_get_contents($pid_file)))) {
 				$return['state'] = 'ok';
@@ -434,7 +434,7 @@ class blea extends eqLogic {
 			}
 		}
 		$return['launchable'] = 'ok';
-		$port = jeedom::getBluetoothMapping(config::byKey('port', 'blea'));
+		$port = jeedom::getBluetoothMapping(config::byKey('port', 'bluetooth'));
 		if ($port == '') {
 			$return['launchable'] = 'nok';
 			$return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
@@ -444,8 +444,8 @@ class blea extends eqLogic {
 
 	public static function dependancy_info() {
 		$return = array();
-		$return['log'] = 'blea_update';
-		$return['progress_file'] = jeedom::getTmpFolder('blea') . '/dependance';
+		$return['log'] = 'bluetooth_update';
+		$return['progress_file'] = jeedom::getTmpFolder('bluetooth') . '/dependance';
 		$return['state'] = 'ok';
 		if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "python3\-serial|python3\-requests|python3\-pyudev|rfkill" | wc -l') < 4) {
 			$return['state'] = 'nok';
@@ -458,7 +458,7 @@ class blea extends eqLogic {
 
 	public static function dependancy_install() {
 		log::remove(__CLASS__ . '_update');
-		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('blea') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('bluetooth') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
 	public static function deamon_start() {
 		self::deamon_stop();
@@ -467,28 +467,28 @@ class blea extends eqLogic {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
 		$unlock = exec('sudo rfkill unblock all >/dev/null 2>&1');
-		if (config::byKey('port', 'blea','none') == 'none') {
+		if (config::byKey('port', 'bluetooth','none') == 'none') {
 			foreach (jeedom::getBluetoothMapping() as $name => $value) {
-				config::save('port', $name ,'blea');
+				config::save('port', $name ,'bluetooth');
 			break;
 			}
 		}
-		$port = jeedom::getBluetoothMapping(config::byKey('port', 'blea'));
-		$blea_path = realpath(dirname(__FILE__) . '/../../resources/blead');
-		$cmd = 'sudo /usr/bin/python3 ' . $blea_path . '/blead.py';
-		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('blea'));
+		$port = jeedom::getBluetoothMapping(config::byKey('port', 'bluetooth'));
+		$bluetooth_path = realpath(dirname(__FILE__) . '/../../resources/bluetoothd');
+		$cmd = 'sudo /usr/bin/python3 ' . $bluetooth_path . '/bluetoothd.py';
+		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('bluetooth'));
 		$cmd .= ' --device ' . $port;
-		$cmd .= ' --socketport ' . config::byKey('socketport', 'blea');
+		$cmd .= ' --socketport ' . config::byKey('socketport', 'bluetooth');
 		$cmd .= ' --sockethost 127.0.0.1';
-		$cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/blea/core/php/jeeBlea.php';
-		$cmd .= ' --apikey ' . jeedom::getApiKey('blea');
+		$cmd .= ' --callback ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/bluetooth/core/php/jeebluetooth.php';
+		$cmd .= ' --apikey ' . jeedom::getApiKey('bluetooth');
 		$cmd .= ' --daemonname local';
-		$cmd .= ' --noseeninterval ' . config::byKey('absentnumber', 'blea', 4);
-		$cmd .= ' --scaninterval ' . config::byKey('scaninterval', 'blea', 29);
-		$cmd .= ' --scanmode ' . config::byKey('scanmode', 'blea', 'passive');
-		$cmd .= ' --pid ' . jeedom::getTmpFolder('blea') . '/deamon.pid';
-		log::add('blea', 'info', 'Lancement démon blea : ' . $cmd);
-		$result = exec($cmd . ' >> ' . log::getPathToLog('blea_local') . ' 2>&1 &');
+		$cmd .= ' --noseeninterval ' . config::byKey('absentnumber', 'bluetooth', 4);
+		$cmd .= ' --scaninterval ' . config::byKey('scaninterval', 'bluetooth', 29);
+		$cmd .= ' --scanmode ' . config::byKey('scanmode', 'bluetooth', 'passive');
+		$cmd .= ' --pid ' . jeedom::getTmpFolder('bluetooth') . '/deamon.pid';
+		log::add('bluetooth', 'info', 'Lancement démon bluetooth : ' . $cmd);
+		$result = exec($cmd . ' >> ' . log::getPathToLog('bluetooth_local') . ' 2>&1 &');
 		$i = 0;
 		while ($i < 30) {
 			$deamon_info = self::deamon_info();
@@ -499,86 +499,86 @@ class blea extends eqLogic {
 			$i++;
 		}
 		if ($i >= 30) {
-			log::add('blea', 'error', __('Impossible de lancer le démon blea, vérifiez la log',__FILE__), 'unableStartDeamon');
+			log::add('bluetooth', 'error', __('Impossible de lancer le démon bluetooth, vérifiez la log',__FILE__), 'unableStartDeamon');
 			return false;
 		}
-		blea_remote::setCacheRemotes('allremotes',blea_remote::all());
-		blea::launch_allremotes();
-		message::removeAll('blea', 'unableStartDeamon');
-		config::save('include_mode', 0, 'blea');
+		bluetooth_remote::setCacheRemotes('allremotes',bluetooth_remote::all());
+		bluetooth::launch_allremotes();
+		message::removeAll('bluetooth', 'unableStartDeamon');
+		config::save('include_mode', 0, 'bluetooth');
 		return true;
 	}
 
-	public static function syncconfBlea($_background = true) {
-		log::remove('blea_syncconf');
-		log::add('blea_syncconf', 'info', 'Arrêt du démon en cours');
+	public static function syncconfbluetooth($_background = true) {
+		log::remove('bluetooth_syncconf');
+		log::add('bluetooth_syncconf', 'info', 'Arrêt du démon en cours');
 		self::deamon_stop();
-		log::add('blea_syncconf', 'info', 'Arrêt du démon fait');
-		$cmd = system::getCmdSudo() . ' /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh >> ' . log::getPathToLog('blea_syncconf') . ' 2>&1';
+		log::add('bluetooth_syncconf', 'info', 'Arrêt du démon fait');
+		$cmd = system::getCmdSudo() . ' /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh >> ' . log::getPathToLog('bluetooth_syncconf') . ' 2>&1';
 		if ($_background) {
 			$cmd .= ' &';
 		}
-		log::add('blea_syncconf', 'info', $cmd);
+		log::add('bluetooth_syncconf', 'info', $cmd);
 		shell_exec($cmd);
 		self::send_allremotes();
 		self::deamon_start();
 	}
 
 	public static function sendIdToDeamon() {
-		foreach (self::byType('blea') as $eqLogic) {
+		foreach (self::byType('bluetooth') as $eqLogic) {
 			$eqLogic->allowDevice();
 			usleep(500);
 		}
-		$value = json_encode(array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'ready'));
-		log::add('blea', 'info', 'Sending ready to daemons');
+		$value = json_encode(array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'ready'));
+		log::add('bluetooth', 'info', 'Sending ready to daemons');
 		self::socket_connection($value,True);
 	}
 
 	public function launch_allremotes(){
-		log::add('blea','info','Launching remotes ...');
-		$remotes = blea_remote::all();
+		log::add('bluetooth','info','Launching remotes ...');
+		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
-			blea::launchremote($remote->getId());
+			bluetooth::launchremote($remote->getId());
 			sleep(1);
 		}
 	}
 
 	public function send_allremotes(){
-		log::add('blea','info','Updating files on remotes ...');
-		$remotes = blea_remote::all();
+		log::add('bluetooth','info','Updating files on remotes ...');
+		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
-			blea::sendRemoteFiles($remote->getId());
-			blea::launchremote($remote->getId());
+			bluetooth::sendRemoteFiles($remote->getId());
+			bluetooth::launchremote($remote->getId());
 		}
 	}
 
 	public function update_allremotes(){
-		log::add('blea','info','Updating remotes ...');
-		$remotes = blea_remote::all();
+		log::add('bluetooth','info','Updating remotes ...');
+		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
-			blea::dependancyRemote($remote->getId());
-			blea::launchremote($remote->getId());
+			bluetooth::dependancyRemote($remote->getId());
+			bluetooth::launchremote($remote->getId());
 		}
 	}
 
 	public function stop_allremotes(){
-		log::add('blea','info','Stopping remotes ...');
-		$remotes = blea_remote::all();
+		log::add('bluetooth','info','Stopping remotes ...');
+		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
-			blea::stopremote($remote->getId());
+			bluetooth::stopremote($remote->getId());
 		}
 	}
 
 	public static function saveAntennaPosition($_antennas, $_type = ''){
-		$remotes = blea_remote::all();
+		$remotes = bluetooth_remote::all();
 		$antennas = json_decode($_antennas, true);
 		foreach ($antennas as $antenna => $position) {
 			$name = $antenna;
 			$x= explode('|',$position)[0];
 			$y= explode('|',$position)[1];
 			if ($name == 'local'){
-				config::save('positionx'.$_type, $x, 'blea');
-				config::save('positiony'.$_type, $y, 'blea');
+				config::save('positionx'.$_type, $x, 'bluetooth');
+				config::save('positiony'.$_type, $y, 'bluetooth');
 			} else {
 				foreach ($remotes as $remote) {
 					if (is_object($remote) && $name == $remote->getRemoteName()){
@@ -593,14 +593,14 @@ class blea extends eqLogic {
 	}
 
 	public static function socket_connection($_value,$_allremotes = False) {
-		if (config::byKey('port', 'blea', 'none') != 'none') {
+		if (config::byKey('port', 'bluetooth', 'none') != 'none') {
 			$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-			socket_connect($socket, '127.0.0.1', config::byKey('socketport', 'blea'));
+			socket_connect($socket, '127.0.0.1', config::byKey('socketport', 'bluetooth'));
 			socket_write($socket, $_value, strlen($_value));
 			socket_close($socket);
 		}
 		if ($_allremotes){
-			$remotes = blea_remote::getCacheRemotes('allremotes',array());
+			$remotes = bluetooth_remote::getCacheRemotes('allremotes',array());
 			foreach ($remotes as $remote) {
 				$ip = $remote->getConfiguration('remoteIp');
 				$last = $remote->getCache('lastupdate','0');
@@ -608,7 +608,7 @@ class blea extends eqLogic {
 					continue;
 				} else {
 					$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-					socket_connect($socket, $ip, config::byKey('socketport', 'blea'));
+					socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
 					socket_write($socket, $_value, strlen($_value));
 					socket_close($socket);
 				}
@@ -617,30 +617,30 @@ class blea extends eqLogic {
 	}
 
 	public static function changeLogLive($_level) {
-		$value = array('apikey' => jeedom::getApiKey('blea'), 'cmd' => $_level);
+		$value = array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => $_level);
 		$value = json_encode($value);
 		self::socket_connection($value,True);
 	}
 
 	public static function deamon_stop() {
-		$pid_file = '/tmp/blead.pid';
+		$pid_file = '/tmp/bluetoothd.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
 		}
-		system::kill('blead.py');
-		system::fuserk(config::byKey('socketport', 'blea'));
+		system::kill('bluetoothd.py');
+		system::fuserk(config::byKey('socketport', 'bluetooth'));
 		sleep(1);
 	}
 
 	public static function changeIncludeState($_state, $_mode, $_type) {
 		if ($_mode == 1) {
 			if ($_state == 1) {
-				$allowAll = config::byKey('allowAllinclusion', 'blea');
-				$value = json_encode(array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'learnin', 'allowAll' => $allowAll, 'type' => $_type));
+				$allowAll = config::byKey('allowAllinclusion', 'bluetooth');
+				$value = json_encode(array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'learnin', 'allowAll' => $allowAll, 'type' => $_type));
 				self::socket_connection($value,True);
 			} else {
-				$value = json_encode(array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'learnout'));
+				$value = json_encode(array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'learnout'));
 				self::socket_connection($value,True);
 			}
 		}
@@ -652,7 +652,7 @@ class blea extends eqLogic {
 		if ($lum==0){
 			return $initColor;
 		}
-		log::add('blea','debug',$hex . ' ' . $lum);
+		log::add('bluetooth','debug',$hex . ' ' . $lum);
 		$rgb = "#";
 		foreach (range(0,2) as $i) {
 			$c = intval(substr($hex,$i*2,2), 16);
@@ -723,7 +723,7 @@ class blea extends eqLogic {
 		}
 		$specificmodal = false;
 		if ($this->getConfiguration('specificmodal',0) != 0) {
-			$specificmodal = 'blea.' . $this->getConfiguration('device');
+			$specificmodal = 'bluetooth.' . $this->getConfiguration('device');
 		}
 		$cancontrol = false;
 		if ($this->getConfiguration('cancontrol',0) != 0) {
@@ -751,7 +751,7 @@ class blea extends eqLogic {
 			if ($this->getConfiguration('specificclass',0) == 1) {
 				$device= $this->getConfiguration('device');
 				require_once dirname(__FILE__) . '/../config/devices/'.$device.'/class/'.$device.'.class.php';
-				$class= $device.'blea';
+				$class= $device.'bluetooth';
 				$childrenclass = new $class();
 				$childrenclass->postSaveChild($this);
 			}
@@ -781,7 +781,7 @@ class blea extends eqLogic {
 		$globalPresence = 0;
 		$presentcmd = $this->getCmd(null, 'present');
 		if (!is_object($presentcmd)) {
-			$presentcmd = new bleaCmd();
+			$presentcmd = new bluetoothCmd();
 			$presentcmd->setLogicalId('present');
 			$presentcmd->setIsVisible(0);
 			$presentcmd->setIsHistorized(1);
@@ -811,7 +811,7 @@ class blea extends eqLogic {
 	}
 
 	public function allowDevice() {
-		$value = array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'add');
+		$value = array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'add');
 		$islocked =0;
 		$emitter = 'local';
 		if ($this->getConfiguration('islocked',0)==1){
@@ -823,11 +823,11 @@ class blea extends eqLogic {
 				$emitter = 'local';
 			} else {
 				$islocked = 1;
-				$emitterAntenna = blea_remote::byId($this->getConfiguration('antenna','local'));
+				$emitterAntenna = bluetooth_remote::byId($this->getConfiguration('antenna','local'));
 				if (is_object($emitterAntenna)){
 					$emitter = $emitterAntenna->getRemoteName();
 				} else {
-					log::add('blea','error','Attention l\'antenne définie en émission pour ' . $this->getHumanName() . ' n\'existe plus.');
+					log::add('bluetooth','error','Attention l\'antenne définie en émission pour ' . $this->getHumanName() . ' n\'existe plus.');
 					$emitter = 'unknown';
 				}
 			}
@@ -837,11 +837,11 @@ class blea extends eqLogic {
 			} else if ($this->getConfiguration('antenna','local') == 'local'){
 				$emitter = 'local';
 			} else {
-				$emitterAntenna = blea_remote::byId($this->getConfiguration('antenna','local'));
+				$emitterAntenna = bluetooth_remote::byId($this->getConfiguration('antenna','local'));
 				if (is_object($emitterAntenna)){
 					$emitter = $emitterAntenna->getRemoteName();
 				} else {
-					log::add('blea','error','Attention l\'antenne définie en émission pour ' . $this->getHumanName() . ' n\'existe plus.');
+					log::add('bluetooth','error','Attention l\'antenne définie en émission pour ' . $this->getHumanName() . ' n\'existe plus.');
 					$emitter = 'unknown';
 				}
 			}
@@ -849,11 +849,11 @@ class blea extends eqLogic {
 		if ($this->getConfiguration('antennareceive','local') == 'local' || $this->getConfiguration('antennareceive','local') == 'all'){
 			$refresher = $this->getConfiguration('antennareceive','local');
 		} else {
-			$refresherAntenna = blea_remote::byId($this->getConfiguration('antennareceive','local'));
+			$refresherAntenna = bluetooth_remote::byId($this->getConfiguration('antennareceive','local'));
 			if (is_object($refresherAntenna)){
 				$refresher = $refresherAntenna->getRemoteName();
 			} else {
-				log::add('blea','error','Attention l\'antenne définie en réception pour ' . $this->getHumanName() . ' n\'existe plus.');
+				log::add('bluetooth','error','Attention l\'antenne définie en réception pour ' . $this->getHumanName() . ' n\'existe plus.');
 				$refresher = 'unknown';
 			}
 		}
@@ -881,7 +881,7 @@ class blea extends eqLogic {
 		if ($this->getLogicalId() == '') {
 			return;
 		}
-		$value = json_encode(array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'remove', 'device' => array('id' => $this->getLogicalId())));
+		$value = json_encode(array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'remove', 'device' => array('id' => $this->getLogicalId())));
 		self::socket_connection($value,True);
 	}
 
@@ -908,7 +908,7 @@ class blea extends eqLogic {
 		}
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
-			'page' => 'blea',
+			'page' => 'bluetooth',
 			'message' => __('Périphérique reconnu, intégration en cours', __FILE__),
 		));
 		$this->setConfiguration('needsrefresh', 0);
@@ -937,7 +937,7 @@ class blea extends eqLogic {
 		$link_actions = array();
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
-			'page' => 'blea',
+			'page' => 'bluetooth',
 			'message' => __('Création des commandes', __FILE__),
 		));
 
@@ -975,7 +975,7 @@ class blea extends eqLogic {
 				}
 				try {
 					if ($cmd == null || !is_object($cmd)) {
-						$cmd = new bleaCmd();
+						$cmd = new bluetoothCmd();
 						$cmd->setOrder($cmd_order);
 						$cmd->setEqLogic_id($this->getId());
 					} else {
@@ -1030,7 +1030,7 @@ class blea extends eqLogic {
 		if (isset($device['afterInclusionSend']) && $device['afterInclusionSend'] != '') {
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
-				'page' => 'blea',
+				'page' => 'bluetooth',
 				'message' => __('Envoi des commandes post-inclusion', __FILE__),
 			));
 			sleep(5);
@@ -1048,7 +1048,7 @@ class blea extends eqLogic {
 		sleep(2);
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
-			'page' => 'blea',
+			'page' => 'bluetooth',
 			'message' => '',
 		));
 	}
@@ -1058,7 +1058,7 @@ class blea extends eqLogic {
 			if ($this->getConfiguration('specificclass',0) == 1) {
 				$device= $this->getConfiguration('device');
 				require_once dirname(__FILE__) . '/../config/devices/'.$device.'/class/'.$device.'.class.php';
-				$class= $device.'blea';
+				$class= $device.'bluetooth';
 				$childrenclass = new $class();
 				return $childrenclass->convertHtml($this,$_version);
 			} else {
@@ -1080,7 +1080,7 @@ class blea extends eqLogic {
 						$replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
 					}
 				}
-				return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('device'), 'blea')));
+				return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('device'), 'bluetooth')));
 			}
 		} else {
 			return parent::toHtml($_version);
@@ -1089,7 +1089,7 @@ class blea extends eqLogic {
 
 }
 
-class bleaCmd extends cmd {
+class bluetoothCmd extends cmd {
 	/*     * *************************Attributs****************************** */
 
 	/*     * ***********************Methode static*************************** */
@@ -1104,7 +1104,7 @@ class bleaCmd extends cmd {
 		if ($eqLogic->getConfiguration('specificclass',0) != 0) {
 			$device= $eqLogic->getConfiguration('device');
 			require_once dirname(__FILE__) . '/../config/devices/'.$device.'/class/'.$device.'.class.php';
-			$class= $device.'blea';
+			$class= $device.'bluetooth';
 			$childrenclass = new $class();
 		}
 		$values = explode(',', $this->getLogicalId());
@@ -1147,27 +1147,27 @@ class bleaCmd extends cmd {
 		}
 		if ($this->getLogicalId() == 'refresh' || $this->getLogicalId() == 'helper' || $this->getLogicalId() == 'helperrandom'){
 			$data['name'] = $eqLogic->getConfiguration('name','0');
-			$value = json_encode(array('apikey' => jeedom::getApiKey('blea'), 'cmd' => $this->getLogicalId(), 'device' => array('id' => $eqLogic->getLogicalId()), 'command' => $data));
+			$value = json_encode(array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => $this->getLogicalId(), 'device' => array('id' => $eqLogic->getLogicalId()), 'command' => $data));
 		} else {
-			$value = json_encode(array('apikey' => jeedom::getApiKey('blea'), 'cmd' => 'action', 'device' => array('id' => $eqLogic->getLogicalId()), 'command' => $data));
+			$value = json_encode(array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'action', 'device' => array('id' => $eqLogic->getLogicalId()), 'command' => $data));
 		}
 		$sender = $eqLogic->getConfiguration('antenna','local');
 		if ($sender == 'local'){
-			log::add('blea','info','Envoi depuis local');
-			blea::socket_connection($value);
+			log::add('bluetooth','info','Envoi depuis local');
+			bluetooth::socket_connection($value);
 		} elseif ($sender == 'all') {
 			$closest = $eqLogic->closestAntenna();
 			if ($closest == 'local'){
-				log::add('blea','info',__('Envoi depuis local car plus proche',__FILE__));
-				blea::socket_connection($value);
+				log::add('bluetooth','info',__('Envoi depuis local car plus proche',__FILE__));
+				bluetooth::socket_connection($value);
 			} else {
-				$remotes = blea_remote::all();
+				$remotes = bluetooth_remote::all();
 				foreach ($remotes as $remote){
 					if (is_object($remote) && $remote->getRemoteName() == $closest){
-						log::add('blea','info',__('Envoi depuis ',__FILE__) . $remote->getRemoteName() . __(' car plus proche',__FILE__));
+						log::add('bluetooth','info',__('Envoi depuis ',__FILE__) . $remote->getRemoteName() . __(' car plus proche',__FILE__));
 						$ip = $remote->getConfiguration('remoteIp');
 						$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-						socket_connect($socket, $ip, config::byKey('socketport', 'blea'));
+						socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
 						socket_write($socket, $value, strlen($value));
 						socket_close($socket);
 						break;
@@ -1175,12 +1175,12 @@ class bleaCmd extends cmd {
 				}
 			}
 		} else {
-			$remote = blea_remote::byId($sender);
+			$remote = bluetooth_remote::byId($sender);
 			if (is_object($remote)){
-				log::add('blea','info',__('Envoi depuis ',__FILE__) . $remote->getRemoteName());
+				log::add('bluetooth','info',__('Envoi depuis ',__FILE__) . $remote->getRemoteName());
 				$ip = $remote->getConfiguration('remoteIp');
 				$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-				socket_connect($socket, $ip, config::byKey('socketport', 'blea'));
+				socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
 				socket_write($socket, $value, strlen($value));
 				socket_close($socket);
 			}
@@ -1188,7 +1188,7 @@ class bleaCmd extends cmd {
 	}
 }
 
-class blea_remote {
+class bluetooth_remote {
 	/*     * *************************Attributs****************************** */
 	private $id;
 	private $remoteName;
@@ -1201,14 +1201,14 @@ class blea_remote {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM blea_remote
+		FROM bluetooth_remote
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM blea_remote';
+		FROM bluetooth_remote';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -1234,12 +1234,12 @@ class blea_remote {
 	}
 
 	public static function getCacheRemotes($_key = '', $_default = '') {
-		$cache = cache::byKey('BleaPluginRemotes')->getValue();
+		$cache = cache::byKey('bluetoothPluginRemotes')->getValue();
 		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public static function setCacheRemotes($_key, $_value = null) {
-		cache::set('BleaPluginRemotes', utils::setJsonAttr(cache::byKey('BleaPluginRemotes')->getValue(), $_key, $_value));
+		cache::set('bluetoothPluginRemotes', utils::setJsonAttr(cache::byKey('bluetoothPluginRemotes')->getValue(), $_key, $_value));
 	}
 
 	public function execCmd($_cmd) {
@@ -1248,15 +1248,15 @@ class blea_remote {
 		$user = $this->getConfiguration('remoteUser');
 		$pass = $this->getConfiguration('remotePassword');
 		if (!$connection = ssh2_connect($ip, $port)) {
-			log::add('blea', 'error', 'connexion SSH KO for ' . $this->remoteName);
+			log::add('bluetooth', 'error', 'connexion SSH KO for ' . $this->remoteName);
 				return false;
 		} else {
 			if (!ssh2_auth_password($connection, $user, $pass)) {
-				log::add('blea', 'error', 'Authentification SSH KO for ' . $this->remoteName);
+				log::add('bluetooth', 'error', 'Authentification SSH KO for ' . $this->remoteName);
 				return false;
 			} else {
 				foreach ($_cmd as $cmd){
-					log::add('blea', 'info', __('Commande par SSH ',__FILE__) . $cmd .  __(' sur ',__FILE__) . $ip);
+					log::add('bluetooth', 'info', __('Commande par SSH ',__FILE__) . $cmd .  __(' sur ',__FILE__) . $ip);
 					$execmd = "echo '" . $pass . "' | sudo -S " . $cmd;
 					$stream = ssh2_exec($connection, $execmd);
 					$errorStream = ssh2_fetch_stream($stream, SSH2_STREAM_STDERR);
@@ -1266,7 +1266,7 @@ class blea_remote {
 					fclose($stream);
 					fclose($errorStream);
 					if (trim($output) != '') {
-						log::add('blea','debug',$output);
+						log::add('bluetooth','debug',$output);
 					}
 				}
 				$stream = ssh2_exec($connection, 'exit');
@@ -1277,7 +1277,7 @@ class blea_remote {
 				fclose($stream);
 				fclose($errorStream);
 				if (trim($output) != '') {
-					log::add('blea','debug',$output);
+					log::add('bluetooth','debug',$output);
 				}
 				return $output !== false;
 			}
@@ -1290,20 +1290,20 @@ class blea_remote {
 		$user = $this->getConfiguration('remoteUser');
 		$pass = $this->getConfiguration('remotePassword');
 		if (!$connection = ssh2_connect($ip, $port)) {
-			log::add('blea', 'error', 'connexion SSH KO for ' . $this->remoteName);
+			log::add('bluetooth', 'error', 'connexion SSH KO for ' . $this->remoteName);
 			return false;
 		} else {
 			if (!ssh2_auth_password($connection, $user, $pass)) {
-				log::add('blea', 'error', 'Authentification SSH KO for ' . $this->remoteName);
+				log::add('bluetooth', 'error', 'Authentification SSH KO for ' . $this->remoteName);
 				return false;
 			} else {
-				log::add('blea', 'info', 'Envoie de fichier sur ' . $ip);
+				log::add('bluetooth', 'info', 'Envoie de fichier sur ' . $ip);
 				$result = ssh2_scp_send($connection, $_local, $_target, 0777);
 				if (!$result){
-					log::add('blea','error','Files could not be sent to ' . $ip);
+					log::add('bluetooth','error','Files could not be sent to ' . $ip);
 					return false;
 				} else {
-					log::add('blea','info','Files successfully sent to ' . $ip);
+					log::add('bluetooth','info','Files successfully sent to ' . $ip);
 				}
 				$execmd = "echo '" . $pass . "' | sudo -S " . 'exit';
 				$stream = ssh2_exec($connection, $execmd);
@@ -1314,7 +1314,7 @@ class blea_remote {
 				fclose($stream);
 				fclose($errorStream);
 				if (trim($output) != '') {
-					log::add('blea','debug',$output);
+					log::add('bluetooth','debug',$output);
 				}
 			}
 		}
@@ -1327,14 +1327,14 @@ class blea_remote {
 		$user = $this->getConfiguration('remoteUser');
 		$pass = $this->getConfiguration('remotePassword');
 		if (!$connection = ssh2_connect($ip, $port)) {
-			log::add('blea', 'error', 'connexion SSH KO for ' . $this->remoteName);
+			log::add('bluetooth', 'error', 'connexion SSH KO for ' . $this->remoteName);
 				return false;
 		} else {
 			if (!ssh2_auth_password($connection, $user, $pass)) {
-				log::add('blea', 'error', 'Authentification SSH KO for ' . $this->remoteName);
+				log::add('bluetooth', 'error', 'Authentification SSH KO for ' . $this->remoteName);
 				return false;
 			} else {
-				log::add('blea', 'info', __('Récupération de fichier depuis ',__FILE__) . $ip);
+				log::add('bluetooth', 'info', __('Récupération de fichier depuis ',__FILE__) . $ip);
 				$result = ssh2_scp_recv($connection, $_target, $_local);
 				$execmd = "echo '" . $pass . "' | sudo -S " . 'exit';
 				$stream = ssh2_exec($connection, $execmd);
@@ -1345,7 +1345,7 @@ class blea_remote {
 				fclose($stream);
 				fclose($errorStream);
 				if (trim($output) != '') {
-					log::add('blea','debug',$output);
+					log::add('bluetooth','debug',$output);
 				}
 			}
 		}

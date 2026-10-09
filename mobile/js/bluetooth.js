@@ -14,10 +14,10 @@
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- function initBleaBlea() {
+ function initbluetoothbluetooth() {
 	$.ajax({
         type: "POST",
-        url: "plugins/blea/core/ajax/blea.ajax.php",
+        url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
         data: {
             action: "getMobileHealth",
         },
@@ -30,13 +30,13 @@
             $('#div_inclusionAlert').showAlert({message: data.result, level: 'danger'});
             return;
 		}
-		$("#table_healthblea tbody").append(data.result)
+		$("#table_healthbluetooth tbody").append(data.result)
         }
 });
 
 	$.ajax({
         type: "POST",
-        url: "plugins/blea/core/ajax/blea.ajax.php",
+        url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
         data: {
             action: "getMobileGraph",
         },
@@ -62,13 +62,13 @@
 		if (antennas[antenna]['dead']) {
 			icon = icon + '-ko';
 		}
-		graph.addNode(antenna,{url : 'plugins/blea/3rdparty/'+icon+'.png',antenna :1,x:antennas[antenna]['x'],y:antennas[antenna]['y']});
+		graph.addNode(antenna,{url : 'plugins/bluetooth/3rdparty/'+icon+'.png',antenna :1,x:antennas[antenna]['x'],y:antennas[antenna]['y']});
 		topin = graph.getNode(antenna);
 		topin.isPinned = true;
 	}
 	for (eqlogic in eqLogics) {
 		haslink = 0;
-		graph.addNode(eqLogics[eqlogic]['name'],{url : 'plugins/blea/core/config/devices/'+eqLogics[eqlogic]['icon']+'.jpg',antenna :0});
+		graph.addNode(eqLogics[eqlogic]['name'],{url : 'plugins/bluetooth/core/config/devices/'+eqLogics[eqlogic]['icon']+'.jpg',antenna :0});
 		for (linkedantenna in eqLogics[eqlogic]['rssi']){
 			signal = eqLogics[eqlogic]['rssi'][linkedantenna];
 			orisignal = signal;
@@ -209,7 +209,7 @@ $('.reseau').on('click', function () {
 	$('.graph_network').show();
 });
 	
-    $('body').on('blea::includeState', function (_event,_options) {
+    $('body').on('bluetooth::includeState', function (_event,_options) {
 	if (_options['mode'] == 'learn') {
 		if (_options['state'] == 1) {
 			$('.includestop').show();
@@ -221,7 +221,7 @@ $('.reseau').on('click', function () {
 	}
 });
 
-    $('body').on('blea::includeDevice', function (_event,_options) {
+    $('body').on('bluetooth::includeDevice', function (_event,_options) {
       $('.eqLogicAttr[data-l1key=id]').value('');
       if (_options != '') {
         $("#div_configIncludeDevice").show();
@@ -232,7 +232,7 @@ $('.reseau').on('click', function () {
 function changeIncludeState(_state,_mode,_type='') {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+        url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
         data: {
             action: "changeIncludeState",
             state: _state,

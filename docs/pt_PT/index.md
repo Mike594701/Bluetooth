@@ -1,5 +1,5 @@
 
-# Plug-in BLEA (anúncio em Bluetooth)
+# Plug-in bluetooth (anúncio em Bluetooth)
 
 Este plugin é um plugin que permite receber eventos de determinados dispositivos bluetooth (como NIU da Nodon e outros)
 
@@ -27,7 +27,7 @@ Você também pode verificar o status das dependências e reiniciá-las. Em caso
 
 Rendez vous dans le menu Plugins &gt; Protocole Domotique pour retrouver le plugin.
 
-![blea screenshot1](../images/blea_screenshot1.jpg)
+![bluetooth screenshot1](../images/bluetooth_screenshot1.jpg)
 
 Nesta página você pode ver os módulos já incluídos.
 
@@ -38,7 +38,7 @@ Na parte superior desta página, você tem vários botões.
 - Botão de configuração : este botão abre a janela de configuração do plug-in.
 - Botão de saúde : este botão permite que você tenha uma visão geral da saúde de todos os seus módulos.
 
-![blea screenshot2](../images/blea_screenshot2.jpg)
+![bluetooth screenshot2](../images/bluetooth_screenshot2.jpg)
 
 # Equipement
 
@@ -67,11 +67,11 @@ O NIU é muito fácil de incluir, coloque o Jeedom em Inclusion e pressione o bo
 
 Uma vez criado o NIU, você receberá este :
 
-![blea screenshot3](../images/blea_screenshot3.jpg)
+![bluetooth screenshot3](../images/bluetooth_screenshot3.jpg)
 
 Você terá 4 pedidos :
 
-![blea commands niu](../images/blea_commands_niu.jpg)
+![bluetooth commands niu](../images/bluetooth_commands_niu.jpg)
 
 - ButtonId : fornece uma representação digital do tipo de suporte (ideal para cenários)
   - 01 : imprensa simples
@@ -112,10 +112,10 @@ Você deve ir para a página do plug-in (Plugins> Home Automation Protocol) e cl
 
 Se não houver erro e sua antena estiver bem criada no plug-in, instale agora as dependências necessárias e inicie o daemon na antena, que cuidará de estabelecer o link entre os dispositivos Bluetooth em alcance da antena e do plug-in (e, portanto, o Jeedom).
 
-1) Clique no botão "Enviar arquivos", pode demorar um pouco, aguarde. Uma faixa verde confirmando o sucesso aparecerá, vermelha se houver algum problema. Nesse caso, verifique o log "Blea", verifique a configuração (ip, usuário, senha, ...)
-2) Clique no botão "Iniciar dependências"". Novamente, pode levar tempo, aguarde. Uma faixa verde confirmará o sucesso ou vermelho, caso contrário (verifique o log do Blea)
+1) Clique no botão "Enviar arquivos", pode demorar um pouco, aguarde. Uma faixa verde confirmando o sucesso aparecerá, vermelha se houver algum problema. Nesse caso, verifique o log "bluetooth", verifique a configuração (ip, usuário, senha, ...)
+2) Clique no botão "Iniciar dependências"". Novamente, pode levar tempo, aguarde. Uma faixa verde confirmará o sucesso ou vermelho, caso contrário (verifique o log do bluetooth)
 3) Opcional, você pode recuperar manualmente o log de instalação das dependências clicando em "Log de Dependências" e verificar o log, um arquivo de log específico estará disponível na configuração do plugin.
-4) Se tudo correr bem, você pode clicar em "Iniciar o daemon", após um minuto no máximo a data da última comunicação deve ser atualizada, isso significa que o daemon está se comunicando corretamente com o plug-in BLEA.
+4) Se tudo correr bem, você pode clicar em "Iniciar o daemon", após um minuto no máximo a data da última comunicação deve ser atualizada, isso significa que o daemon está se comunicando corretamente com o plug-in bluetooth.
 5) Última etapa opcional, mas recomendada: ativar o gerenciamento automático do daemon clicando no botão correspondente. Isso fará com que o plug-in tente reiniciar automaticamente o daemon remoto no caso de uma perda de conexão (útil se o seu pi remoto tiver sido desconectado temporariamente da rede elétrica ou reiniciado após as atualizações).
 
 
@@ -123,4 +123,4 @@ Se não houver erro e sua antena estiver bem criada no plug-in, instale agora as
 
 Alguns equipamentos como o lywsd03 precisam ser adicionados ao mihome pelo menos uma vez antes de estar ativo
 
-Você pode encontrar [aqui](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=blea) a lista de equipamentos compatíveis
+Você pode encontrar [aqui](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=bluetooth) a lista de equipamentos compatíveis

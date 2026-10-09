@@ -37,7 +37,7 @@ $listUsers = $eqLogic->getConfiguration('specificconfiguration',array());
 			<th>{{Surnom}}</th>
 			<th>{{Taille (en cm)}}</th>
 			<th>{{Poids}}</th>
-			<th>{{Année naissance ( ex : 30-04-1984)}}}</th>
+			<th>{{Année naissance ( ex : 30-04-1984)}}</th>
 			<th>{{Sex}}</th>
 			<th>{{Action}}</th>
 		</tr>
@@ -103,7 +103,7 @@ $('body').undelegate('#bt_delUser', 'click').delegate('#bt_delUser', 'click', fu
 function saveUserList(userList) {
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // méthode de transmission des données au fichier php
-            url: "plugins/blea/core/config/devices/miscale/ajax/miscale.ajax.php", // url du fichier php
+            url: "plugins/bluetooth/core/config/devices/miscale2/ajax/miscale2.ajax.php", // url du fichier php
             data: {
                 action: "saveUserList",
 				id : configureDeviceId,

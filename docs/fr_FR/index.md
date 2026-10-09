@@ -1,5 +1,5 @@
 
-# Plugin BLEA (Bluetooth advertisement)
+# Plugin bluetooth (Bluetooth advertisement)
 
 Ce plugin est un plugin permettant de pouvoir recevoir les événements de certains périphériques bluetooth (tel que les NIU de chez Nodon et autre)
 
@@ -27,7 +27,7 @@ Vous pouvez aussi vérifier l’état des dépendances et les relancer. Encas de
 
 Rendez vous dans le menu Plugins &gt; Protocole Domotique pour retrouver le plugin.
 
-![blea screenshot1](../images/blea_screenshot1.jpg)
+![bluetooth screenshot1](../images/bluetooth_screenshot1.jpg)
 
 Sur cette page, vous pourrez voir les modules déjà inclus.
 
@@ -38,7 +38,7 @@ Sur la partie haute de cette page, vous avez plusieurs boutons.
 - Bouton Configuration : ce bouton permet d’ouvrir la fenêtre de configuration du plugin.
 - Bouton Santé : ce bouton permet d’avoir un aperçu Santé de tous vos modules.
 
-![blea screenshot2](../images/blea_screenshot2.jpg)
+![bluetooth screenshot2](../images/bluetooth_screenshot2.jpg)
 
 # Equipement
 
@@ -67,11 +67,11 @@ Les NIU s’incluent très facilement, mettez Jeedom en Inclusion puis appuyer s
 
 Une fois le NIU créé, vous obtiendrez ceci :
 
-![blea screenshot3](../images/blea_screenshot3.jpg)
+![bluetooth screenshot3](../images/bluetooth_screenshot3.jpg)
 
 Vous aurez ainsi 4 commandes :
 
-![blea commands niu](../images/blea_commands_niu.jpg)
+![bluetooth commands niu](../images/bluetooth_commands_niu.jpg)
 
 - BoutonId : donne une représentation numérique du type d’appui (idéal pour les scénarios)
   - 01 : simple appui
@@ -112,10 +112,10 @@ Vous devez vous rendre sur la page du plugin (Plugins > Protocole Domotique) et 
 
 Si il n'y a pas eu d'erreur et que votre antenne est bien créée dans le plugin, il faut maintenant installer les dépendances nécesaires et lancer le démon sur l'antenne qui va se charger de faire le lien entre les équipements bluetooth à portée de l'antenne et le plugin (et donc Jeedom).
 
-1) Cliquez sur le bouton "Envoyer les fichiers", cela peut prendre un peu de temps, patientez. Un bandeau vert confirmant la réussite va apparaître, rouge s'il y a eu un problème. Dans ce cas, vérifiez le log "Blea", vérifiez la configuration (ip, user, password, ...)
-2) Cliquez ensuite sur le bouton "Lancer les dépendances". De nouveau, cela peut prendre du temps, patientez. Un bandeau vert confirmera la réussite ou rouge sinon (pareil, vérifiez la log Blea)
+1) Cliquez sur le bouton "Envoyer les fichiers", cela peut prendre un peu de temps, patientez. Un bandeau vert confirmant la réussite va apparaître, rouge s'il y a eu un problème. Dans ce cas, vérifiez le log "bluetooth", vérifiez la configuration (ip, user, password, ...)
+2) Cliquez ensuite sur le bouton "Lancer les dépendances". De nouveau, cela peut prendre du temps, patientez. Un bandeau vert confirmera la réussite ou rouge sinon (pareil, vérifiez la log bluetooth)
 3) Optionelle, vous pouvez récupérer manuellement le log d'installation des dépendances en cliquant sur "Log dépendances" et vérfier la log, un fichier log spécifique sera disponnible dans la config du plugin.
-4) Si tout c'est bien déroulé, vous pouvez cliquer sur "Lancer le démon", après maximum une minute la date de dernière communication devrait se mettre à jour, cela veut dire que le démon communique correctement avec le plugin BLEA.
+4) Si tout c'est bien déroulé, vous pouvez cliquer sur "Lancer le démon", après maximum une minute la date de dernière communication devrait se mettre à jour, cela veut dire que le démon communique correctement avec le plugin bluetooth.
 5) Dernière étape optionnelle mais recommandée: activez la gestion automatique du démon en cliquant sur le bouton correspondant. Cela fera en sorte que le plugin tentera de relancer automatiquement le démon distant en cas de perte de connexion (pratique si votre pi distant a été temporairement débranché du secteur ou qu'il a été redémarré suite à des mises à jours).
 
 
@@ -123,4 +123,4 @@ Si il n'y a pas eu d'erreur et que votre antenne est bien créée dans le plugin
 
 Certains équipements comme le lywsd03 nécessitent d'être ajouté a mihome au moins une fois avant d'être actif
 
-Vous pouvez trouver [ici](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=blea) la liste des équipements compatibles
+Vous pouvez trouver [ici](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=bluetooth) la liste des équipements compatibles

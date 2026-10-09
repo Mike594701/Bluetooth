@@ -18,35 +18,35 @@ if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<div id='div_syncconfBleaAlert' style="display: none;"></div>
-<a class="btn btn-warning pull-right" data-state="1" id="bt_bleaLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
-<input class="form-control pull-right" id="in_bleaLogSearch" style="width : 300px;" placeholder="{{Rechercher}}"/>
+<div id='div_syncconfbluetoothAlert' style="display: none;"></div>
+<a class="btn btn-warning pull-right" data-state="1" id="bt_bluetoothLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
+<input class="form-control pull-right" id="in_bluetoothLogSearch" style="width : 300px;" placeholder="{{Rechercher}}"/>
 <br/><br/><br/>
-<pre id='pre_bleasyncconf' style='overflow: auto; height: 90%;with:90%;'>
+<pre id='pre_bluetoothsyncconf' style='overflow: auto; height: 90%;with:90%;'>
 Arrêt du démon en cours
 </pre>
 
 <script>
     $.ajax({
         type: 'POST',
-        url: 'plugins/blea/core/ajax/blea.ajax.php',
+        url: 'plugins/bluetooth/core/ajax/bluetooth.ajax.php',
         data: {
-            action: 'syncconfBlea',
+            action: 'syncconfbluetooth',
         },
         dataType: 'json',
         global: false,
         error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_syncconfBleaAlert'));
+            handleAjaxError(request, status, error, $('#div_syncconfbluetoothAlert'));
         },
         success: function () {
         }
     });
 function updatelog(){
     jeedom.log.autoupdate({
-                log: 'blea_syncconf',
-                display: $('#pre_bleasyncconf'),
-                search: $('#in_bleaLogSearch'),
-                control: $('#bt_bleaLogStopStart'),
+                log: 'bluetooth_syncconf',
+                display: $('#pre_bluetoothsyncconf'),
+                search: $('#in_bluetoothLogSearch'),
+                control: $('#bt_bluetoothLogStopStart'),
             });
 }
 setTimeout(updatelog,2000);

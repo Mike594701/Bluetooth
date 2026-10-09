@@ -45,14 +45,14 @@ if (!isConnect('admin')) {
 	<div class="form-group">
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
 			<div class="col-lg-5">
-				<a class="btn btn-warning" id="bt_syncconfigBlea"><i class="fas fa-sync-alt"></i> {{Configs modules}}</a>
+				<a class="btn btn-warning" id="bt_syncconfigbluetooth"><i class="fas fa-sync-alt"></i> {{Configs modules}}</a>
 			</div>
 		</div>
 <div class="form-group">
 <label class="col-lg-4 control-label">{{Mettre tous les équipements sur Local}}</label>
 <div class="col-lg-2">
-	<a class="btn btn-success bleaAction" data-action="all" data-type="reception"><i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Réception}}</a>
-	<a class="btn btn-danger bleaAction" data-action="all" data-type="emission"><i class="fas fa-sign-in-alt fa-rotate-270"></i> {{Emission}}</a>
+	<a class="btn btn-success bluetoothAction" data-action="all" data-type="reception"><i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Réception}}</a>
+	<a class="btn btn-danger bluetoothAction" data-action="all" data-type="emission"><i class="fas fa-sign-in-alt fa-rotate-270"></i> {{Emission}}</a>
 </div>
 </div>
    </fieldset>
@@ -83,7 +83,7 @@ if (!isConnect('admin')) {
        </div>
 	</div>
 		<?php
-			$remotes = blea_remote::all();
+			$remotes = bluetooth_remote::all();
 			foreach ($remotes as $remote) {
 				echo '<div class="form-group">';
 				echo '<label class="col-lg-4 control-label">{{Version Démon }}' . $remote->getRemoteName() . '</label>';
@@ -140,7 +140,7 @@ foreach (jeedom::getBluetoothMapping() as $name => $value) {
  $('.changeLogLive').on('click', function () {
 	 $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
-            url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+            url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
             data: {
                 action: "changeLogLive",
 				level : $(this).attr('data-log')
@@ -159,13 +159,13 @@ foreach (jeedom::getBluetoothMapping() as $name => $value) {
         });
 });
 
-$('.bleaAction[data-action=all]').on('click',function(){
+$('.bluetoothAction[data-action=all]').on('click',function(){
 	var type = $(this).attr('data-type');
 	bootbox.confirm('{{Etes-vous sûr de vouloir mettre tous les équipements sur Local en : }}' +$(this).attr('data-type'), function (result) {
 		if (result) {
 			$.ajax({
 				type: "POST",
-				url: "plugins/blea/core/ajax/blea.ajax.php",
+				url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
 				data: {
 					action: "allantennas",
 					remote: "local",
@@ -200,7 +200,7 @@ $('.allantennas').on('click', function () {
 	}
 	 $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
-            url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+            url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
             data: {
                 action: action
             },
@@ -218,10 +218,10 @@ $('.allantennas').on('click', function () {
         });
 });
 
-function blea_postSaveConfiguration(){
+function bluetooth_postSaveConfiguration(){
   $.ajax({
     type: "POST",
-    url: "plugins/blea/core/ajax/blea.ajax.php",
+    url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
     data: {
       action: "launchremotes",
     },
@@ -238,11 +238,11 @@ function blea_postSaveConfiguration(){
     }
   });
 }
-$('#bt_syncconfigBlea').on('click',function(){
-		bootbox.confirm('{{Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin Blea.}}', function (result) {
+$('#bt_syncconfigbluetooth').on('click',function(){
+		bootbox.confirm('{{Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin bluetooth.}}', function (result) {
 			if (result) {
 				$('#md_modal2').dialog({title: "{{Téléchargement des configurations}}"});
-				$('#md_modal2').load('index.php?v=d&plugin=blea&modal=syncconf.blea').dialog('open');
+				$('#md_modal2').load('index.php?v=d&plugin=bluetooth&modal=syncconf.bluetooth').dialog('open');
 			}
 		});
 	});

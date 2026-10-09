@@ -18,31 +18,31 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-function blea_install() {
+function bluetooth_install() {
 	$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
 	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-	foreach (blea::byType('blea') as $blea) {
-		$blea->save();
+	foreach (bluetooth::byType('bluetooth') as $bluetooth) {
+		$bluetooth->save();
 	}
-	config::save('version',blea::$_version,'blea');
+	config::save('version',bluetooth::$_version,'bluetooth');
 }
 
-function blea_update() {
+function bluetooth_update() {
 	$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
 	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-	foreach (blea::byType('blea') as $blea) {
-		$blea->save();
+	foreach (bluetooth::byType('bluetooth') as $bluetooth) {
+		$bluetooth->save();
 	}
-	message::add('blea','Pensez à mettre à jour vos antennes et relancer leurs dépendances si besoin ...');
-	config::save('version',blea::$_version,'blea');
-	if (config::byKey('allowUpdateAntennas','blea',0) == 1) {
-		log::add('blea','info','Mise à jour des fichiers de toutes les antennes');
-		blea::send_allremotes();
+	message::add('bluetooth','Pensez à mettre à jour vos antennes et relancer leurs dépendances si besoin ...');
+	config::save('version',bluetooth::$_version,'bluetooth');
+	if (config::byKey('allowUpdateAntennas','bluetooth',0) == 1) {
+		log::add('bluetooth','info','Mise à jour des fichiers de toutes les antennes');
+		bluetooth::send_allremotes();
 	}
 }
 
-function blea_remove() {
-	DB::Prepare('DROP TABLE IF EXISTS `blea_remote`', array(), DB::FETCH_TYPE_ROW);
+function bluetooth_remove() {
+	DB::Prepare('DROP TABLE IF EXISTS `bluetooth_remote`', array(), DB::FETCH_TYPE_ROW);
 }
 
 ?>

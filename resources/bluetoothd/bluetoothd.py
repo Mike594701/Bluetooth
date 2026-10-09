@@ -513,7 +513,7 @@ def shutdown():
 	sys.stdout.flush()
 	os._exit(0)
 
-parser = argparse.ArgumentParser(description='Blead Daemon for Jeedom plugin')
+parser = argparse.ArgumentParser(description='bluetoothd Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
 parser.add_argument("--loglevel", help="Log Level for the daemon", type=str)
 parser.add_argument("--pidfile", help="Value to write", type=str)
@@ -560,7 +560,7 @@ if globals.device == '':
 	globals.device = 'hci0'
 
 jeedom_utils.set_log_level(globals.log_level)
-logging.info('GLOBAL------Start blead')
+logging.info('GLOBAL------Start bluetoothd')
 logging.info('GLOBAL------Log level : '+str(globals.log_level))
 logging.info('GLOBAL------Socket port : '+str(globals.socketport))
 logging.info('GLOBAL------Socket host : '+str(globals.sockethost))

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROGRESS_FILE=/tmp/dependancy_blea_in_progress
+PROGRESS_FILE=/tmp/dependancy_bluetooth_in_progress
 
 if [ ! -z "$1" ]; then
     PROGRESS_FILE=$1
@@ -11,7 +11,7 @@ touch ${PROGRESS_FILE}
 echo 0 > ${PROGRESS_FILE}
 
 echo "********************************************************"
-echo "*         Installation des dépendances BLEA           *"
+echo "*         Installation des dépendances bluetooth           *"
 echo "********************************************************"
 
 sudo apt-get update

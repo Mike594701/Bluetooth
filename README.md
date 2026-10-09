@@ -1,2 +1,2 @@
-# plugin-blea
+# plugin-bluetooth
 

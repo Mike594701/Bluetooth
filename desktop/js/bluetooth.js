@@ -27,7 +27,7 @@
 	if (state == 1){
 		$.ajax({// fonction permettant de faire de l'ajax
 			type: "POST", // methode de transmission des données au fichier php
-			url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+			url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
 			data: {
 				action: "getAllTypes",
 			},
@@ -47,7 +47,7 @@
 		});
 		var dialog_title = '';
 		var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
-		dialog_title = '{{Inclusion BLEA}}';
+		dialog_title = '{{Inclusion bluetooth}}';
 		dialog_message += '<label class="control-label" > {{Quel type de produit voulez-vous inclure : }} </label> ' +
 		'<div>' +
 		' <select id="type">' +
@@ -82,43 +82,43 @@
 	}
 });
 
- $('#bt_healthblea').on('click', function () {
-    $('#md_modal').dialog({title: "{{Santé BLEA}}"});
-    $('#md_modal').load('index.php?v=d&plugin=blea&modal=health').dialog('open');
+ $('#bt_healthbluetooth').on('click', function () {
+    $('#md_modal').dialog({title: "{{Santé bluetooth}}"});
+    $('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=health').dialog('open');
 });
 
-$('#bt_graphblea').on('click', function () {
-    $('#md_modal').dialog({title: "{{Réseau BLEA}}"});
-    $('#md_modal').load('index.php?v=d&plugin=blea&modal=blea.graph').dialog('open');
+$('#bt_graphbluetooth').on('click', function () {
+    $('#md_modal').dialog({title: "{{Réseau bluetooth}}"});
+    $('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.graph').dialog('open');
 });
 
 $('#bt_specificmodal').on('click', function () {
     $('#md_modal').dialog({title: "{{Configuration spécifique}}"});
-    $('#md_modal').load('index.php?v=d&plugin=blea&modal=' +$(this).attr("data-modal") +'&id='+$('.eqLogicAttr[data-l1key=id]').val()).dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=' +$(this).attr("data-modal") +'&id='+$('.eqLogicAttr[data-l1key=id]').val()).dialog('open');
 });
 
-$('#bt_remoteblea').on('click', function () {
+$('#bt_remotebluetooth').on('click', function () {
     $('#md_modal').dialog({title: "{{Gestion des antennes bluetooth}}"});
-    $('#md_modal').load('index.php?v=d&plugin=blea&modal=blea.remote&id=blea').dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.remote&id=bluetooth').dialog('open');
 });
 
-$('#bt_advancedblea').on('click', function () {
+$('#bt_advancedbluetooth').on('click', function () {
     $('#md_modal').dialog({title: "{{Réglages avancées}}"});
-    $('#md_modal').load('index.php?v=d&plugin=blea&modal=blea.advanced').dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=bluetooth&modal=bluetooth.advanced').dialog('open');
 });
 
  $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').on('change', function () {
   if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
    getModelListParam($(this).value(),$('.eqLogicAttr[data-l1key=id]').value());
 }else{
-    $('#img_device').attr("src",'plugins/blea/doc/images/blea_icon.png');
+    $('#img_device').attr("src",'plugins/bluetooth/doc/images/bluetooth_icon.png');
 }
 });
 
 function getModelListParam(_conf,_id) {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+        url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
         data: {
             action: "getModelListParam",
             conf: _conf,
@@ -159,7 +159,7 @@ function getModelListParam(_conf,_id) {
         $(".listModel").html(options);
 		$icon = $('.eqLogicAttr[data-l1key=configuration][data-l2key=iconModel]').value();
 		if($icon != '' && $icon != null){
-			$('#img_device').attr("src", 'plugins/blea/core/config/devices/'+$icon+'.jpg');
+			$('#img_device').attr("src", 'plugins/bluetooth/core/config/devices/'+$icon+'.jpg');
 		}
     }
 });
@@ -196,7 +196,7 @@ $('#bt_autoDetectModule').on('click', function () {
                             if (result) {
                                 $.ajax({
                                     type: "POST",
-                                    url: "plugins/blea/core/ajax/blea.ajax.php",
+                                    url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
                                     data: {
                                         action: "autoDetectModule",
                                         id: $('.eqLogicAttr[data-l1key=id]').value(),
@@ -220,7 +220,7 @@ $('#bt_autoDetectModule').on('click', function () {
 					} else {
 						$.ajax({
                                     type: "POST",
-                                    url: "plugins/blea/core/ajax/blea.ajax.php",
+                                    url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
                                     data: {
                                         action: "autoDetectModule",
                                         id: $('.eqLogicAttr[data-l1key=id]').value(),
@@ -251,7 +251,7 @@ $('.deleteUnknown').on('click', function () {
         if (result) {
             $.ajax({
                 type: "POST",
-                url: "plugins/blea/core/ajax/blea.ajax.php",
+                url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php",
                 data: {
                     action: "deleteUnknown",
                 },
@@ -275,7 +275,7 @@ $('.deleteUnknown').on('click', function () {
 
  $('.eqLogicAttr[data-l1key=configuration][data-l2key=iconModel]').on('change', function () {
   if($(this).value() != '' && $(this).value() != null){
-    $('#img_device').attr("src", 'plugins/blea/core/config/devices/'+$(this).value()+'.jpg');
+    $('#img_device').attr("src", 'plugins/bluetooth/core/config/devices/'+$(this).value()+'.jpg');
 }
 });
 
@@ -348,7 +348,7 @@ function addCmdToTable(_cmd) {
     });
 }
 
-$('body').on('blea::includeState', function (_event,_options) {
+$('body').on('bluetooth::includeState', function (_event,_options) {
 	if (_options['mode'] == 'learn') {
 		if (_options['state'] == 1) {
 			if($('.include').attr('data-state') != 0){
@@ -369,14 +369,14 @@ $('body').on('blea::includeState', function (_event,_options) {
 	}
 });
 
-$('body').on('blea::includeDevice', function (_event,_options) {
+$('body').on('bluetooth::includeDevice', function (_event,_options) {
     if (modifyWithoutSave) {
         $('#div_inclusionAlert').showAlert({message: '{{Un périphérique vient d\'être inclu/exclu. Veuillez réactualiser la page}}', level: 'warning'});
     } else {
         if (_options == '') {
             window.location.reload();
         } else {
-            window.location.href = 'index.php?v=d&p=blea&m=blea&id=' + _options;
+            window.location.href = 'index.php?v=d&p=bluetooth&m=bluetooth&id=' + _options;
         }
     }
 });
@@ -385,7 +385,7 @@ $('body').on('blea::includeDevice', function (_event,_options) {
 function changeIncludeState(_state,_mode,_type='') {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/blea/core/ajax/blea.ajax.php", // url du fichier php
+        url: "plugins/bluetooth/core/ajax/bluetooth.ajax.php", // url du fichier php
         data: {
             action: "changeIncludeState",
             state: _state,
