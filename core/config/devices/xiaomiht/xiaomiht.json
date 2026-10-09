@@ -1,0 +1,118 @@
+{
+    "xiaomiht": {
+        "name": "Xiaomi Température Humidité",
+        "groupe" : "Température",
+        "models" : {"xiaomiht/xiaomiht_cleargrass" : {"configuration" :{"battery_type" : "1x3V CR2430"}}},
+		"configuration" : {
+			"needsrefresh" : 0,
+			"name" : "xiaomiht",
+			"battery_type" : "1x1.5V AAA",
+			"xiaomi" : 1,
+			"delay" : 1800,
+			"cancontrol" : 0
+    },
+        "commands": [
+			{
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "icon": "<i class=\"fas fa-thermometer-empty\"><\/i>",
+					"generic_type": "TEMPERATURE"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "°C",
+                "logicalId": "temperature",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Humidité",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-tint\"><\/i>",
+					"generic_type": "HUMIDITY"
+				},
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "moisture",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-battery-full\"><\/i>",
+					"generic_type": "BATTERY"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "battery",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Firmware",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "firmware"
+            },
+            {
+                "name": "Refresh",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "icon": "<i class=\"fas fa-sync\"><\/i>",
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "refresh"
+            }
+        ],
+		"compatibility": [
+            {
+        "manufacturer": "Xiaomi",
+        "name": "Température Humidité",
+				"doc": "",
+				"type": "Capteurs",
+				"battery_type": "1x1.5V AAA",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Capteurs de Température Humidité avec écran",
+				"inclusion" : "Mode inclusion",
+				"imglink": "xiaomiht"
+            },
+			{
+                "manufacturer": "Xiaomi",
+                "name": "Température Humidité Cleargrass",
+                "doc": "",
+                "type": "Micromodule",
+                "ref" : "",
+                "comlink": "",
+                "remark": "Capteurs de Température Humidité avec écran e-ink",
+                "inclusion" : "Mode inclusion",
+                "imglink": "xiaomiht_cleargrass"
+            }
+        ]
+    }
+}

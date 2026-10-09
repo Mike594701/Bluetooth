@@ -1,0 +1,25 @@
+{
+    "default": {
+        "name": "Inconnu",
+        "groupe" : "Inconnu",
+		"configuration" : {
+			"name" : "default",
+			"cancontrol" : 1
+		},
+        "commands": [
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Inconnu",
+                "name": "Inconnu",
+				"doc": "",
+				"type": "Defaut",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Uniquement pour les équipements non encore rajouté dans le plugin, pour a minima avoir la présence et les rssi ainsi que la data brute",
+				"inclusion" : "Mode inclusion avec option 'Inconnu'",
+				"imglink": "default"
+            }
+        ]
+    }
+}

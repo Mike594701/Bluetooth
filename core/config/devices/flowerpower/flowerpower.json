@@ -1,0 +1,211 @@
+{
+    "flowerpower": {
+        "name": "Flower Power",
+        "groupe" : "Plante",
+		"configuration" : {
+			"needsrefresh" : 1,
+			"name" : "flowerpower",
+			"battery_type" : "Batterie",
+			"delay" : 900,
+			"cancontrol" : 1
+		},
+        "commands": [
+			{
+                "name": "Luminosité",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-sun\"><\/i>",
+					"generic_type": "BRIGHTNESS"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "mol / m² / d",
+                "logicalId": "sunlight",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Sol conductivité",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "icon": "<i class=\"fas fa-thermometer-empty\"><\/i>",
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "TODO",
+                "logicalId": "soilec",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Sol température",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "icon": "<i class=\"fas fa-thermometer-empty\"><\/i>",
+					"generic_type": "DONT"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "°C",
+                "logicalId": "soiltemp",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Air température",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "icon": "<i class=\"fas fa-thermometer-empty\"><\/i>",
+					"generic_type": "TEMPERATURE"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "°C",
+                "logicalId": "airtemp",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Humidité",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-tint\"><\/i>",
+					"generic_type": "HUMIDITY"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "soilmoisture",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Humidité (calibrée)",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-tint\"><\/i>",
+					"generic_type": "GENERIC"
+				},
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "calibratedsoilmoisture",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Air température (calibrée)",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "icon": "<i class=\"fas fa-thermometer-empty\"><\/i>",
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "°C",
+                "logicalId": "calibratedairtemp",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Luminosité (DLI)",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-sun\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "dli",
+                "logicalId": "calibratedli",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Couleur",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"generic_type": "DONT"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "color",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-battery-full\"><\/i>",
+					"generic_type": "BATTERY"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "battery",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+            {
+                "name": "Refresh",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "icon": "<i class=\"fas fa-sync\"><\/i>",
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "refresh"
+            }
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Parrot",
+                "name": "Power Flower",
+				"doc": "",
+				"type": "Capteurs",
+				"battery_type": "1x1.5V AAA",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Capteurs de plantes",
+				"inclusion" : "Mode inclusion",
+				"imglink": "flowerpower"
+            }
+        ]
+    }
+}

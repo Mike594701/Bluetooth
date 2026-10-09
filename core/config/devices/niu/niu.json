@@ -1,0 +1,127 @@
+{
+    "niu": {
+        "name": "Niu",
+		"groupe" : "Boutons",
+		"configuration" : {
+			"resetRssis" : 0,
+			"battery_type" : "1x3V CR2032",
+			"name" : "niu"
+		},
+        "commands": [
+            {
+                "name": "BoutonID",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+				"template": {
+                    "mobile": "badge",
+					"dashboard" : "badge"
+                },
+				"configuration": {
+                "repeatEventManagement" : "always"
+				},
+                "unite": "",
+                "logicalId": "buttonid"
+            },
+			{
+                "name": "Boutons",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "",
+				"configuration": {
+                "repeatEventManagement" : "always"
+				},
+                "logicalId": "button"
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "battery"
+            }
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Nodon",
+                "name": "Niu Wazabi",
+				"doc": "",
+				"type": "Boutons",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Disponible en plusieurs coloris",
+				"inclusion" : "Mode inclusion et appui sur le bouton",
+				"imglink": "niu_wazabi"
+            },
+			{
+                "manufacturer": "Nodon",
+                "name": "Niu Gris",
+				"doc": "",
+				"type": "Boutons",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Disponible en plusieurs coloris",
+				"inclusion" : "Mode inclusion et appui sur le bouton",
+				"imglink": "niu_cozygrey"
+            },
+			{
+                "manufacturer": "Nodon",
+                "name": "Niu Lagoon",
+				"doc": "",
+				"type": "Boutons",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Disponible en plusieurs coloris",
+				"inclusion" : "Mode inclusion et appui sur le bouton",
+				"imglink": "niu_lagoon"
+            },
+			{
+                "manufacturer": "Nodon",
+                "name": "Niu Softberry",
+				"doc": "",
+				"type": "Boutons",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Disponible en plusieurs coloris",
+				"inclusion" : "Mode inclusion et appui sur le bouton",
+				"imglink": "niu_softberry"
+            },
+			{
+                "manufacturer": "Nodon",
+                "name": "Niu Techblue",
+				"doc": "",
+				"type": "Boutons",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Disponible en plusieurs coloris",
+				"inclusion" : "Mode inclusion et appui sur le bouton",
+				"imglink": "niu_techblue"
+            },
+			{
+                "manufacturer": "Nodon",
+                "name": "Niu Blanc",
+				"doc": "",
+				"type": "Boutons",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Disponible en plusieurs coloris",
+				"inclusion" : "Mode inclusion et appui sur le bouton",
+				"imglink": "niu_white"
+            }
+        ]
+    }
+}

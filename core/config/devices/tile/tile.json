@@ -1,0 +1,25 @@
+{
+    "tile": {
+        "name": "Tile",
+        "groupe" : "Présence",
+		"configuration" : {
+			"name" : "tile"
+		},
+        "commands": [
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Tile",
+                "name": "Tile",
+				"doc": "",
+				"type": "Présence",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Uniquement pour de la présence",
+				"inclusion" : "Mode inclusion",
+				"imglink": "tile"
+            }
+        ]
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "myfox": {
+        "name": "Myfox",
+		"groupe" : "Sécurité",
+		"configuration" : {
+			"name" : "myfox"
+		},
+        "commands": [
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Myfox",
+                "name": "Badge",
+				"doc": "",
+				"type": "Présence",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Uniquement pour de la présence",
+				"inclusion" : "Mode inclusion",
+				"imglink": "myfox"
+            }
+        ]
+    }
+}

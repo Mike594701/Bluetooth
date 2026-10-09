@@ -1,0 +1,80 @@
+{
+    "nut": {
+        "name": "Nut",
+        "groupe" : "Présence",
+		"configuration" : {
+			"name" : "nut",
+			"battery_type" : "1x3V CR2032"
+		},
+        "commands": [
+			{
+                "name": "Présence",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+                    "generic_type": "PRESENCE"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "present"
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-battery-full\"><\/i>",
+					"generic_type": "BATTERY"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "battery",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Refresh",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "icon": "<i class=\"fas fa-sync\"><\/i>",
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "refresh"
+            }
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Nut",
+                "name": "Nut",
+				"doc": "",
+				"type": "Présence",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Uniquement pour de la présence",
+				"inclusion" : "Mode inclusion",
+				"imglink": "nut"
+            },
+			{
+                "manufacturer": "Nut",
+                "name": "Nut Mini Bleu",
+				"doc": "",
+				"type": "Présence",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "",
+				"inclusion" : "Mode inclusion",
+				"imglink": "nut_mini_bleu"
+            }
+        ]
+    }
+}

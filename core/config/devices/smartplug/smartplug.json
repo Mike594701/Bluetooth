@@ -1,0 +1,75 @@
+{
+    "smartplug": {
+        "name": "Smartplug",
+		"groupe" : "Prises",
+		"configuration" : {
+			"needsrefresh" : 1,
+			"name" : "smartplug",
+			"delay" : 120,
+			"cancontrol" : 1,
+			"canbelocked" : 1
+		},
+        "commands": [
+			{
+                "name": "Statut",
+                "type": "info",
+                "subtype": "binary",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "status"
+            },
+            {
+                "name": "Consommation",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+				"template": {
+                    "mobile": "badge",
+					"dashboard" : "badge"
+                },
+                "unite": "",
+                "logicalId": "power"
+            },
+			{
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "logicalId": "name:smp-b16-fr,handle:0x2b,value:0f06030001000005ffff"
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "logicalId": "name:smp-b16-fr,handle:0x2b,value:0f06030000000004ffff"
+            },
+            {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "logicalId": "refresh"
+            }
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Awox",
+                "name": "Smartplug",
+				"doc": "",
+				"type": "Prises",
+				"battery_type": "",
+				"ref" : "",
+				"comlink": "",
+				"remark": "",
+				"inclusion" : "Mode inclusion",
+				"imglink": "smartplug"
+            }
+        ]
+    }
+}

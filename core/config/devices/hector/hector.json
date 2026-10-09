@@ -1,0 +1,126 @@
+{
+    "hector": {
+        "name": "Hector",
+		"groupe" : "Capteurs",
+		"configuration" : {
+			"needsrefresh" : 1,
+			"cancontrol" : 1,
+			"name" : "hector",
+			"delay" : 18000,
+			"battery_type" : "1x3V CR2032"
+		},
+        "commands": [
+			{
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+                    "icon": "<i class=\"fas fa-thermometer-empty\"><\/i>",
+					"generic_type": "DONT"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "°C",
+                "logicalId": "temperature",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Humidité",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-tint\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "humidity",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Pression",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-sun\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "hPa",
+                "logicalId": "pressure",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-battery-full\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "battery",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Pile Voltage",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-battery-full\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "V",
+                "logicalId": "batteryvoltage",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Refresh",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "refresh"
+            }
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Hector",
+                "name": "Hector",
+				"doc": "",
+				"type": "Capteurs",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Ne doit pas rester connecté en permanence sur votre téléphone si vous voulez l'interaction dans Jeedom",
+				"inclusion" : "Mode inclusion",
+				"imglink": "hector"
+            }
+        ]
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "wistiki": {
+        "name": "Wistiki",
+        "groupe" : "Présence",
+		"configuration" : {
+			"name" : "wistiki"
+		},
+        "commands": [
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Wistiki",
+                "name": "Wistiki",
+				"doc": "",
+				"type": "Présence",
+				"battery_type": "1x3V CR2032",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Uniquement pour de la présence",
+				"inclusion" : "Mode inclusion",
+				"imglink": "wistiki"
+            }
+        ]
+    }
+}

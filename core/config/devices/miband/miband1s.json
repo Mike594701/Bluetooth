@@ -1,0 +1,188 @@
+{
+    "miband1s": {
+        "name": "Miband1s",
+		"groupe" : "Santé",
+		"configuration" : {
+			"name" : "miband",
+			"battery_type" : "Batterie",
+			"xiaomi" : 1,
+			"cancontrol" : 1
+		},
+        "commands": [
+			{
+                "name": "Nombre de pas",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "steps",
+                "unite": "pas",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				},
+				"display": {
+					"icon": "<i class=\"icon loisir-runner5\"><\/i>",
+					"generic_type": "DONT"
+				}
+            },
+			{
+                "name": "Coeur",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "heartvalue",
+                "unite": "bpm",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				},
+				"display": {
+					"icon": "<i class=\"fas fa-heartbeat\"><\/i>",
+					"generic_type": "DONT"
+				}
+            },
+			{
+                "name": "Nombre de charges",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "cycle",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Statut",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "status",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Dernière charge",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "logicalId": "lastcharge",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "display": {
+					"icon": "<i class=\"fas fa-battery-full\"><\/i>",
+					"generic_type": "DONT"
+				},
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "%",
+                "logicalId": "battery",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				}
+            },
+			{
+                "name": "Firmware",
+                "type": "info",
+                "subtype": "string",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "firmware"
+            },
+			{
+                "name": "Vibration",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "logicalId": "name:miband,handle:0x51,value:04",
+				"display": {
+					"icon": "<i class=\"fas fa-rss\"><\/i>",
+					"generic_type": "DONT"
+				}
+            },
+			{
+                "name": "Vibration + Led",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "logicalId": "name:miband,handle:0x51,value:01",
+				"display": {
+					"icon": "<i class=\"icon jeedom-alerte\"><\/i>",
+					"generic_type": "DONT"
+				}
+            },
+			{
+                "name": "Vibration 10s",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "logicalId": "name:miband,handle:0x51,value:02",
+				"display": {
+					"icon": "<i class=\"fas fa-clock-o\"><\/i>",
+					"generic_type": "DONT"
+				}
+            },
+			{
+                "name": "Mesure coeur",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "logicalId": "name:miband,handle:0x4e,value:150201,key:aa71c8620120ae850004004c75646f7669630042",
+				"template": {
+					"dashboard": "line",
+					"mobile": "line"
+				},
+				"display": {
+					"icon": "<i class=\"fas fa-heart\"><\/i>",
+					"generic_type": "DONT"
+				}
+            },
+            {
+                "name": "Refresh",
+                "type": "action",
+                "subtype": "other",
+                "display": {
+                    "generic_type": "GENERIC"
+                },
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "logicalId": "refresh"
+            }
+        ],
+		"compatibility": [
+            {
+                "manufacturer": "Xiaomi",
+                "name": "Miband1s",
+				"doc": "",
+				"type": "Santé",
+				"battery_type": "Batterie",
+				"ref" : "",
+				"comlink": "",
+				"remark": "Selon les firmwares peut ne plus fonctionner. Attention si le bracelet est connecté à votre smartphone il est plus visible en bluetooth",
+				"inclusion" : "Mode inclusion",
+				"imglink": "miband1s"
+            }
+        ]
+    }
+}
