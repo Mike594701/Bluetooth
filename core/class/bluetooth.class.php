@@ -66,7 +66,7 @@ class bluetooth extends eqLogic {
 		$eqLogic->setConfiguration('needsrefresh',0);
 		$eqLogic->setConfiguration('specificwidgets',0);
 		$model = $eqLogic->getModelListParam();
-		if (count($model) > 0) {
+		if (is_array($model) && count($model) > 0) {
 			$eqLogic->setConfiguration('iconModel', array_keys($model[0])[0]);
 		}
 		$eqLogic->save();
@@ -358,10 +358,14 @@ class bluetooth extends eqLogic {
 		if ($last == '0' or time() - strtotime($last)>65){
 				return;
 		} else {
-			$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-			socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
-			socket_write($socket, $value, strlen($value));
-			socket_close($socket);
+			$socket = @socket_create(AF_INET, SOCK_STREAM, 0);
+
+			if ($socket !== false) {
+				@socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
+				@socket_write($socket, $value, strlen($value));
+				@socket_close($socket);
+			}
+			
 		}
 		return True;
 	}
@@ -372,13 +376,12 @@ class bluetooth extends eqLogic {
 		$ip = $remoteObject->getConfiguration('remoteIp');
 		$value = array('apikey' => jeedom::getApiKey('bluetooth'), 'cmd' => 'stop');
 		$value = json_encode($value);
-		$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-		if ($socket) {
-			if (socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'))) {
-				socket_write($socket, $value, strlen($value));
-				socket_close($socket);
+		$socket = @socket_create(AF_INET, SOCK_STREAM, 0);
+			if ($socket !== false) {
+				@socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
+				@socket_write($socket, $value, strlen($value));
+				@socket_close($socket);
 			}
-		}
 		$remoteObject->execCmd(['fuser -k 55008/tcp >> /dev/null 2>&1 &']);
 		config::save('include_mode', 0, 'bluetooth');
 		event::add('bluetooth::includeState', array(
@@ -534,7 +537,7 @@ class bluetooth extends eqLogic {
 		self::socket_connection($value,True);
 	}
 
-	public function launch_allremotes(){
+	public static function launch_allremotes(){
 		log::add('bluetooth','info','Launching remotes ...');
 		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
@@ -543,7 +546,7 @@ class bluetooth extends eqLogic {
 		}
 	}
 
-	public function send_allremotes(){
+	public static function send_allremotes(){
 		log::add('bluetooth','info','Updating files on remotes ...');
 		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
@@ -552,7 +555,7 @@ class bluetooth extends eqLogic {
 		}
 	}
 
-	public function update_allremotes(){
+	public static function update_allremotes(){
 		log::add('bluetooth','info','Updating remotes ...');
 		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
@@ -561,7 +564,7 @@ class bluetooth extends eqLogic {
 		}
 	}
 
-	public function stop_allremotes(){
+	public static function stop_allremotes(){
 		log::add('bluetooth','info','Stopping remotes ...');
 		$remotes = bluetooth_remote::all();
 		foreach ($remotes as $remote) {
@@ -607,10 +610,12 @@ class bluetooth extends eqLogic {
 				if ($last == '0' or time() - strtotime($last)>65){
 					continue;
 				} else {
-					$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-					socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
-					socket_write($socket, $_value, strlen($_value));
-					socket_close($socket);
+					$socket = @socket_create(AF_INET, SOCK_STREAM, 0);
+					if ($socket !== false) {
+						@socket_connect($socket, $ip, config::byKey('socketport'));
+						@socket_write($socket, $_value, strlen($_value));
+						@socket_close($socket);
+					}
 				}
 			}
 		}
@@ -622,8 +627,9 @@ class bluetooth extends eqLogic {
 		self::socket_connection($value,True);
 	}
 
+	
 	public static function deamon_stop() {
-		$pid_file = '/tmp/bluetoothd.pid';
+		$pid_file = jeedom::getTmpFolder('bluetooth') . '/deamon.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
@@ -686,7 +692,7 @@ class bluetooth extends eqLogic {
 					'selected' => $selected,
 				);
 			}
-			if (count($files[$dir]) == 0) {
+			if (!is_array($files[$dir]) || count($files[$dir]) == 0){
 				unset($files[$dir]);
 			}
 		}
@@ -715,7 +721,8 @@ class bluetooth extends eqLogic {
 		$json = self::devicesParameters($_conf);
 		if (isset($json['compatibility'])) {
 			foreach ($json['compatibility'] as $compatibility){
-				if ($compatibility['imglink'] == explode('/',$this->getConfiguration('iconModel'))[1]){
+				$iconParts = explode('/', $this->getConfiguration('iconModel', ''));
+				if (isset($iconParts[1]) && $compatibility['imglink'] == $iconParts[1]) {
 					$remark = $compatibility['remark'] . ' | ' . $compatibility['inclusion'];
 					break;
 				}
@@ -1108,6 +1115,7 @@ class bluetoothCmd extends cmd {
 			$childrenclass = new $class();
 		}
 		$values = explode(',', $this->getLogicalId());
+		$data = [];
 		foreach ($values as $value) {
 			$value = explode(':', $value);
 			if (count($value) == 2) {
@@ -1131,7 +1139,10 @@ class bluetoothCmd extends cmd {
 			}
 		}
 		if (isset($data['secondary'])){
-			$data['secondary'] = $eqLogic->getCmd('info',$data['secondary'])->execCmd();
+			$cmdSecondary = $eqLogic->getCmd('info', $data['secondary']);
+			if (is_object($cmdSecondary)) {
+				$data['secondary'] = $cmdSecondary->execCmd();
+			}
 		}
 		if (isset($data['classlogical'])){
 			$data = $childrenclass->calculateOutputValue($eqLogic,$data,$_options);
@@ -1166,10 +1177,12 @@ class bluetoothCmd extends cmd {
 					if (is_object($remote) && $remote->getRemoteName() == $closest){
 						log::add('bluetooth','info',__('Envoi depuis ',__FILE__) . $remote->getRemoteName() . __(' car plus proche',__FILE__));
 						$ip = $remote->getConfiguration('remoteIp');
-						$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-						socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
-						socket_write($socket, $value, strlen($value));
-						socket_close($socket);
+						$socket = @socket_create(AF_INET, SOCK_STREAM, 0);
+						if ($socket !== false) {
+							@socket_connect($socket, $ip, config::byKey('socketport'));
+							@socket_write($socket, $value, strlen($value));
+							@socket_close($socket);
+						}
 						break;
 					}
 				}
@@ -1179,10 +1192,12 @@ class bluetoothCmd extends cmd {
 			if (is_object($remote)){
 				log::add('bluetooth','info',__('Envoi depuis ',__FILE__) . $remote->getRemoteName());
 				$ip = $remote->getConfiguration('remoteIp');
-				$socket = socket_create(AF_INET, SOCK_STREAM, 0);
-				socket_connect($socket, $ip, config::byKey('socketport', 'bluetooth'));
-				socket_write($socket, $value, strlen($value));
-				socket_close($socket);
+				$socket = @socket_create(AF_INET, SOCK_STREAM, 0);
+				if ($socket !== false) {
+					@socket_connect($socket, $ip, config::byKey('socketport'));
+					@socket_write($socket, $value, strlen($value));
+					@socket_close($socket);
+				}
 			}
 		}
 	}
