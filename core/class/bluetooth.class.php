@@ -27,7 +27,6 @@ class bluetooth extends eqLogic {
 		self::deamon_stop();
 		self::deamon_start();
 	}
-
 	public static function createFromDef($_def) {
 		event::add('jeedom::alert', array(
 			'level' => 'warning',

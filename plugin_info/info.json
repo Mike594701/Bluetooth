@@ -14,8 +14,8 @@
         "tr": "Plugin pour la gestion de certains devices qui fonctionnent en bluetooth comme les NIUS de Nodon Pour les NIUS il permet de detecter les différents appuis. Pour certains autres devices il permet de faire de la présence. Aussi compatible avec les boutons ticatag (avec gestion des multiples appuis température et action pour le faire sonner) Compatible Mi flora, Mi scale , awox smartplug, playbulb, miband1 et 1s"
     },
     "licence": "AGPL",
-    "author": "Jeedom SAS",
-    "require": "3.0",
+    "author": "OZAER Michael",
+    "require": "4.",
     "mobile": "bluetooth",
     "category": "automation protocol",
     "maxDependancyInstallTime": 60,
@@ -25,15 +25,6 @@
     "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/bluetooth\/",
     "language": [
         "fr_FR",
-        "en_US",
-        "es_ES",
-        "de_DE",
-        "ru_RU",
-        "id_ID",
-        "it_IT",
-        "ja_JP",
-        "pt_PT",
-        "tr"
     ],
     "compatibility": [
         "miniplus",
