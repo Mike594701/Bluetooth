@@ -11,14 +11,16 @@ class Notification():
 		self.conn = conn
 		self.classname = classname
 		self.action = action
-
+		
 	def subscribe(self,timer=0,disconnect=True):
+		logging.debug('LYWSD03 SUBSCRIBE')
 		try:
 			logging.debug('Subscribing to notification : '+str(self.conn.mac))
 			delegate = NotificationDelegate(self.conn,self.classname,self.action)
 			self.conn.conn.setDelegate(delegate)
 			logging.debug('Delegated')
 			threading.Thread( target=self.waiter, args=(timer,disconnect,)).start()
+			logging.debug('LYWSD03 SUBSCRIBE DONE')
 		except Exception as e:
 			logging.debug(str(e))
 			self.conn.disconnect(True)

@@ -35,6 +35,7 @@ class Lywsd03():
 					return
 			batt = bytearray(conn.readCharacteristic('0x3a'))
 			battery = batt[0]
+			logging.debug('LYWSD03 BATTERY=' + str(battery))
 			conn.writeCharacteristic('0x38','0100',response=True)
 			conn.writeCharacteristic('0x46','f40100',response=True)
 			notification = Notification(conn,Lywsd03)
@@ -48,6 +49,7 @@ class Lywsd03():
 		return result
 
 	def handlenotification(self,conn,handle,data,action={}):
+		logging.debug('LYWSD03 HANDLE=' + hex(handle))
 		result={}
 		if hex(handle) == '0x36':
 			received = bytearray(data)

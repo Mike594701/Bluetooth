@@ -148,7 +148,7 @@ class ScanDelegate(DefaultDelegate):
 						if (globals.LEARN_TYPE == 'all' or globals.LEARN_TYPE == 'default') :
 							logging.debug('SCANNER------It\'s a unknown packet and I don\'t known this device so I learn ' +str(mac))
 							action['learn'] = 1
-							logging.debug(action)
+							logging.debug(action)							
 							globals.JEEDOM_COM.add_changes('devices::'+action['id'],action)
 						else:
 							logging.debug('SCANNER------It\'s a known packet and I don\'t known this device ' +str(mac) + ' but i only want ' + globals.LEARN_TYPE + ' and this is ' +action['type'])
