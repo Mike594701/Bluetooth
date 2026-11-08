@@ -8,7 +8,7 @@
     "author": "OZAER Michael",
     "require": "4.5",
     "mobile": "bluetooth",
-    "category": "automation protocol",
+    "category": "devicecommunication",
     "maxDependancyInstallTime": 60,
     "hasOwnDeamon": true,
     "hasDependency": true,
